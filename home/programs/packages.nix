@@ -11,7 +11,6 @@
     fd # Fast find
     fzf # Fuzzy finder
     grc # Generic coloriser
-    wl-clipboard # Wayland clipboard support
     file # File type detection
     tree
     tealdeer

@@ -4,8 +4,7 @@
     ./packages.nix
     ./config.nix
     ./shell.nix
-    ./nix.nix
-    ./dev.nix
+    ./emacs.nix
     ./git.nix
     ./gnome.nix
   ];

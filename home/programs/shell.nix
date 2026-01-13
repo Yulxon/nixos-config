@@ -4,8 +4,6 @@
     bash = {
       enable = true;
       bashrcExtra = ''
-        export PATH="$PATH:$HOME/.local/bin:$HOME/.config/emacs/bin:$HOME/.cargo/bin"
-        export EDITOR="vim"
         alias ls="eza"
         alias ll="eza -l"
         alias grep="rg"
@@ -29,5 +27,4 @@
       enableFishIntegration = true;
     };
   };
-
 }
