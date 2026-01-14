@@ -1,12 +1,5 @@
 { ... }:
 {
-  environment.shellAliases = {
-    ls = "eza";
-    ll = "eza -l";
-    grep = "rg";
-    docker = "podman";
-  };
-
   programs = {
     bash = {
       enable = true;

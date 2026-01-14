@@ -1,12 +1,11 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     kitty # Terminal emulator
     mpv # Media player
     vscodium.fhs # Code editor (FHS compliant)
     distrobox # Container manager
 
-    eza # Modern `ls`
     ripgrep # Fast search (`rg`)
     fd # Fast find
     fzf # Fuzzy finder
@@ -16,7 +15,6 @@
     tealdeer
 
     fastfetchMinimal # System info
-    btop # Resource monitor
     nh # Nix helper
 
     hugo # Static site generator

@@ -2,7 +2,7 @@
 {
   imports = [
     ./packages.nix
-    # ./config.nix
+    ./nix.nix
     ./shell.nix
     ./emacs.nix
     ./git.nix
