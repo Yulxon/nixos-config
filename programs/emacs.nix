@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
+    emacs
+
     libtool # (vterm) 编译必需
 
     nil # Nix LSP 服务端
@@ -8,12 +10,4 @@
 
     prettierd # (format) 更快的格式化守护进程
   ];
-
-  # --- 增强程序配置 ---
-  programs = {
-    emacs = {
-      enable = true;
-      package = pkgs.emacs;
-    };
-  };
 }

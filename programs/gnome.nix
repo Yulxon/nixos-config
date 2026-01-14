@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs.gnomeExtensions; [
+  environment.systemPackages = with pkgs.gnomeExtensions; [
     alphabetical-app-grid
     appindicator
     hide-top-bar

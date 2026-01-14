@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     kitty # Terminal emulator
     mpv # Media player
     vscodium.fhs # Code editor (FHS compliant)

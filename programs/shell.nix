@@ -1,14 +1,15 @@
 { ... }:
 {
+  environment.shellAliases = {
+    ls = "eza";
+    ll = "eza -l";
+    grep = "rg";
+    docker = "podman";
+  };
+
   programs = {
     bash = {
       enable = true;
-      bashrcExtra = ''
-        alias ls="eza"
-        alias ll="eza -l"
-        alias grep="rg"
-        alias docker="podman"
-      '';
     };
 
     # Better shell prmot!
