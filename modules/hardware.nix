@@ -1,5 +1,13 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelPackages = pkgs.linuxPackages_zen;
+  };
+
   hardware = {
     graphics.enable = true;
     nvidia = {
@@ -7,17 +15,9 @@
       open = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
-    steam-hardware.enable = true;
-    uinput.enable = true;
-    xpadneo.enable = true;
   };
 
   services = {
-    asusd = {
-      enable = true;
-      enableUserService = true;
-    };
-    supergfxd.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
