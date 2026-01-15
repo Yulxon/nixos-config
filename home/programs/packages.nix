@@ -8,17 +8,30 @@
 
     ripgrep # Fast search (`rg`)
     fd # Fast find
-    fzf # Fuzzy finder
     grc # Generic coloriser
     file # File type detection
     tree
     tealdeer
+    just
 
     fastfetchMinimal # System info
-    nh # Nix helper
 
     hugo # Static site generator
 
     nerd-fonts.symbols-only
   ];
+
+  programs = {
+    bat = {
+      enable = true;
+      config.theme = "tokyo-night";
+    };
+    fzf.enable = true;
+    jq.enable = true;
+    btop.enable = true;
+    nh = {
+      enable = true;
+      flake = "/home/chumi/.config/nixos-config/";
+    };
+  };
 }

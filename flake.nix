@@ -8,6 +8,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -15,6 +24,8 @@
       nixpkgs,
       home-manager,
       nixos-hardware,
+      nix-index-database,
+      nixvim,
       ...
     }:
     {
@@ -30,11 +41,15 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.chumi = import ./home/home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
             }
 
             nixos-hardware.nixosModules.asus-fx506hm
+
+            nix-index-database.nixosModules.default
           ];
         };
       };
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
 }
