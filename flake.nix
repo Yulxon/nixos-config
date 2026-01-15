@@ -17,6 +17,10 @@
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -26,29 +30,28 @@
       nixos-hardware,
       nix-index-database,
       nixvim,
+      stylix,
       ...
     }:
     {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./host/configuration.nix
-            ./modules
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./host/configuration.nix
+          ./modules
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.chumi = import ./home/home.nix;
-              home-manager.extraSpecialArgs = { inherit inputs; };
-            }
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.chumi = import ./home/home.nix;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+          }
 
-            nixos-hardware.nixosModules.asus-fx506hm
-
-            nix-index-database.nixosModules.default
-          ];
-        };
+          nixos-hardware.nixosModules.asus-fx506hm
+          nix-index-database.nixosModules.default
+          stylix.nixosModules.stylix
+        ];
       };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
