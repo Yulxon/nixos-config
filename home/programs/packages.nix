@@ -22,10 +22,7 @@
   ];
 
   programs = {
-    bat = {
-      enable = true;
-      config.theme = "tokyo-night";
-    };
+    bat.enable = true;
     fzf.enable = true;
     jq.enable = true;
     btop.enable = true;

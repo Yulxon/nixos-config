@@ -7,43 +7,65 @@
   programs.nixvim = {
     enable = true;
 
-    # 1. 主题设置 (保持不变)
     colorschemes.tokyonight = {
       enable = true;
       settings.style = "night";
     };
 
-    # 2. 语言支持 (LSP & Treesitter)
     plugins = {
+      web-devicons.enable = true;
+      lualine.enable = true;
+      bufferline.enable = true;
       treesitter = {
         enable = true;
         nixGrammars = true; # 确保安装了各种语言的语法解析器
         settings.highlight.enable = true;
       };
+      which-key = {
+        enable = true;
+      };
+      noice = {
+        enable = true;
+        settings.presets = {
+          bottom_search = true;
+          command_palette = true;
+          long_message_to_split = true;
+        };
+      };
+      telescope = {
+        enable = true;
+        keymaps = {
+          "<leader>ff" = {
+            options.desc = "file finder";
+            action = "find_files";
+          };
+          "<leader>fg" = {
+            options.desc = "find via grep";
+            action = "live_grep";
+          };
+        };
+        extensions = {
+          file-browser.enable = true;
+        };
+      };
 
       lsp = {
         enable = true;
         servers = {
-          # --- 原有语言 ---
           clangd.enable = true; # C/C++
           pyright.enable = true; # Python
           rust_analyzer = {
-            # Rust
             enable = true;
-            installCargo = true;
-            installRustc = true;
+            installCargo = false;
+            installRustc = false;
           };
           yamlls.enable = true; # YAML
           jsonls.enable = true; # JSON
 
-          # --- 新增 Nix 支持 ---
-          nixd.enable = true; # 推荐使用 nixd，功能非常强大
-          # 或者你也可以选择使用 nil:
-          # nil_ls.enable = true;
+          nil_ls.enable = true;
         };
       };
 
-      # 3. 自动补全 (保持不变)
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -60,13 +82,11 @@
         };
       };
 
-      # 4. 格式化 (新增：让 Nix 代码整洁)
       none-ls = {
         enable = true;
         sources.formatting.nixpkgs_fmt.enable = true;
       };
 
-      # 5. 其他功能 (文件管理、终端)
       neo-tree.enable = true;
       toggleterm = {
         enable = true;
@@ -74,7 +94,6 @@
       };
     };
 
-    # 快捷键与 Leader 键 (保持不变)
     globals.mapleader = " ";
     keymaps = [
       {
