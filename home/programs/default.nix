@@ -7,6 +7,6 @@
     ./emacs.nix
     ./nixvim.nix
     ./git.nix
-    ./gnome.nix
+    # ./gnome.nix
   ];
 }
