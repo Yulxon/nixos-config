@@ -17,10 +17,7 @@
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {
-      url = "github:nix-community/stylix/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -30,7 +27,7 @@
       nixos-hardware,
       nix-index-database,
       nixvim,
-      stylix,
+      catppuccin,
       ...
     }:
     {
@@ -39,18 +36,23 @@
         modules = [
           ./host/configuration.nix
           ./modules
+          catppuccin.nixosModules.catppuccin
 
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.chumi = import ./home/home.nix;
+            home-manager.users.chumi = {
+              imports = [
+                ./home/home.nix
+                catppuccin.homeModules.catppuccin
+              ];
+            };
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
 
           nixos-hardware.nixosModules.asus-fx506hm
           nix-index-database.nixosModules.default
-          stylix.nixosModules.stylix
         ];
       };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;

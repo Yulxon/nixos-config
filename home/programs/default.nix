@@ -8,6 +8,6 @@
     ./nixvim.nix
     ./git.nix
     ./gnome.nix
-    ./aria2.nix
+    ./catppuccin.nix
   ];
 }
