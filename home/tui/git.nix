@@ -1,5 +1,10 @@
 { ... }:
 {
+  home.shellAliases = {
+    g = "git";
+    lg = "lazygit";
+  };
+
   # https://nixos.asia/en/git
   programs = {
     git = {

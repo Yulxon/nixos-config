@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ./programs
+    ./gui
+    ./tui
   ];
 
   home = {
