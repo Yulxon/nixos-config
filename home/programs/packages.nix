@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     kitty # Terminal emulator
     mpv # Media player
+    yt-dlp
     vscodium.fhs # Code editor (FHS compliant)
     distrobox # Container manager
 

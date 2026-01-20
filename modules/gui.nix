@@ -6,17 +6,18 @@
       xkb.layout = "us";
     };
 
-    # displayManager.gdm.enable = true;
-    # desktopManager.gnome.enable = true;
-    displayManager.cosmic-greeter.enable = true;
-    desktopManager.cosmic.enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    #displayManager.cosmic-greeter.enable = true;
+    #desktopManager.cosmic.enable = true;
 
     flatpak.enable = true;
 
   };
 
   environment.systemPackages = with pkgs; [
-    # gnome-tweaks
+    gnome-tweaks
+    # adwaita-fonts
   ];
 
   virtualisation.podman.enable = true;
@@ -33,15 +34,15 @@
     inputMethod = {
       enable = true;
 
-      #   type = "ibus";
-      #   ibus.engines = with pkgs.ibus-engines; [
-      #     (rime.override {
+      type = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [
+        (rime.override {
 
-      type = "fcitx5";
-      fcitx5.waylandFrontend = true;
-      fcitx5.addons = with pkgs; [
-        fcitx5-tokyonight
-        (fcitx5-rime.override {
+          # type = "fcitx5";
+          # fcitx5.waylandFrontend = true;
+          # fcitx5.addons = with pkgs; [
+          #   fcitx5-fluent
+          #   (fcitx5-rime.override {
 
           rimeDataPkgs = with pkgs; [
             rime-ice
