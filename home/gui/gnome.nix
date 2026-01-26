@@ -5,6 +5,7 @@
     alphabetical-app-grid
     appindicator
     hide-top-bar
+    user-themes
   ];
 
   home.sessionVariables = {

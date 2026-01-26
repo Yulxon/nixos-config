@@ -24,9 +24,9 @@
 
   programs = {
     bat.enable = true;
+    btop.enable = true;
     fzf.enable = true;
     jq.enable = true;
-    btop.enable = true;
     nh = {
       enable = true;
       flake = "/home/chumi/.config/nixos-config/";
