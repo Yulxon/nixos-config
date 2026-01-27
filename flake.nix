@@ -36,6 +36,9 @@
         modules = [
           ./host/configuration.nix
           ./modules
+
+          nixos-hardware.nixosModules.asus-fx506hm
+          nix-index-database.nixosModules.default
           catppuccin.nixosModules.catppuccin
 
           home-manager.nixosModules.home-manager
@@ -45,14 +48,12 @@
             home-manager.users.chumi = {
               imports = [
                 ./home/home.nix
+                nix-index-database.homeModules.default
                 catppuccin.homeModules.catppuccin
               ];
             };
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
-
-          nixos-hardware.nixosModules.asus-fx506hm
-          nix-index-database.nixosModules.default
         ];
       };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
