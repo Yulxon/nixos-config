@@ -38,8 +38,8 @@
           ./modules
 
           nixos-hardware.nixosModules.asus-fx506hm
-          nix-index-database.nixosModules.default
-          catppuccin.nixosModules.catppuccin
+          # nix-index-database.nixosModules.default
+          # catppuccin.nixosModules.catppuccin
 
           home-manager.nixosModules.home-manager
           {

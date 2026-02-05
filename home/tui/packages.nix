@@ -4,6 +4,7 @@
     kitty # Terminal emulator
     mpv # Media player
     yt-dlp
+    ffmpeg
     vscodium.fhs # Code editor (FHS compliant)
     distrobox # Container manager
 
