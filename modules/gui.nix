@@ -8,8 +8,6 @@
 
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    #displayManager.cosmic-greeter.enable = true;
-    #desktopManager.cosmic.enable = true;
 
     flatpak.enable = true;
 
@@ -17,7 +15,6 @@
 
   environment.systemPackages = with pkgs; [
     gnome-tweaks
-    # adwaita-fonts
   ];
 
   virtualisation.podman.enable = true;

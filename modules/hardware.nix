@@ -8,6 +8,8 @@
     kernelPackages = pkgs.linuxPackages_zen;
   };
 
+  zramSwap.enable = true;
+
   hardware = {
     graphics.enable = true;
     nvidia = {
@@ -24,5 +26,6 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    journald.extraConfig = "SystemMaxUse=100M";
   };
 }

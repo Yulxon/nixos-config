@@ -40,18 +40,14 @@
       enable = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
-      settings = {
-        character = {
-          success_symbol = "[>](bold green)";
-          error_symbol = "[>](bold red)";
-        };
-      };
+      # settings = {
+      #   character = {
+      #     success_symbol = "[>](bold green)";
+      #     error_symbol = "[>](bold red)";
+      #   };
+      # };
     };
 
-    zoxide = {
-      enable = true;
-      enableFishIntegration = true;
-      enableBashIntegration = true;
-    };
+    zoxide.enable = true;
   };
 }

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   networking = {
     hostName = "nixos";
@@ -10,11 +10,6 @@
   };
 
   services = {
-    dae = {
-      enable = false;
-      configFile = "/home/chumi/.var/network/config.dae";
-    };
-
     mihomo = {
       enable = true;
       configFile = "/home/chumi/.var/config.yaml";
