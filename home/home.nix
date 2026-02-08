@@ -9,7 +9,7 @@
   home = {
     username = "chumi";
     homeDirectory = "/home/chumi";
-    stateVersion = "25.05"; # Please read the comment before changing.
+    stateVersion = "25.11";
   };
   programs.home-manager.enable = true;
 

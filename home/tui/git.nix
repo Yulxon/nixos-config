@@ -5,7 +5,6 @@
     lg = "lazygit";
   };
 
-  # https://nixos.asia/en/git
   programs = {
     git = {
       enable = true;

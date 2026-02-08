@@ -28,31 +28,37 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/acc2cf7b-bb63-498f-9a8f-3f7eba575af9";
     fsType = "btrfs";
-    options = [ "subvol=root" "compress=zstd" ];
+    options = [
+      "subvol=root"
+      "compress=zstd"
+    ];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/acc2cf7b-bb63-498f-9a8f-3f7eba575af9";
     fsType = "btrfs";
-    options = [ "subvol=home" "compress=zstd" ];
+    options = [
+      "subvol=home"
+      "compress=zstd"
+    ];
   };
-  
+
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/acc2cf7b-bb63-498f-9a8f-3f7eba575af9";
     fsType = "btrfs";
-    options = [ "subvol=nix" "compress=zstd" ];
-  };
-
-  fileSystems."/persist" = {
-    device = "/dev/disk/by-uuid/acc2cf7b-bb63-498f-9a8f-3f7eba575af9";
-    fsType = "btrfs";
-    options = [ "subvol=persist" "compress=zstd" ];
+    options = [
+      "subvol=nix"
+      "compress=zstd"
+    ];
   };
 
   fileSystems."/var/log" = {
     device = "/dev/disk/by-uuid/acc2cf7b-bb63-498f-9a8f-3f7eba575af9";
     fsType = "btrfs";
-    options = [ "subvol=log" "compress=zstd" ];
+    options = [
+      "subvol=log"
+      "compress=zstd"
+    ];
   };
 
   fileSystems."/boot" = {

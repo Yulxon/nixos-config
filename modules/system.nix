@@ -3,7 +3,7 @@
   time.timeZone = "Asia/Shanghai";
 
   system = {
-    stateVersion = "25.05";
+    stateVersion = "25.11";
     autoUpgrade = {
       enable = true;
       allowReboot = true;
@@ -16,6 +16,7 @@
       "networkmanager"
       "wheel"
     ];
+    hashedPassword = "$6$yxwzQrlKxnzNiDu/$VNew68h86pEhRZbyNOr6KM8HsAfpZPoCEyoEuuy9Z2ok3OLOUNE0YAb3Q9XZf8PbGS2SEalN.ft08bVbNPEWt0";
   };
 
   environment = {
@@ -26,30 +27,5 @@
     ];
     variables.EDITOR = "vim";
   };
-
-  nix = {
-    optimise.automatic = true;
-    settings = {
-      substituters = [
-        "https://mirrors.cernet.edu.cn/nix-channels/store"
-        "https://nix-community.cachix.org"
-      ];
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
-
-  nixpkgs.config.allowUnfree = true;
-  # programs.nix-ld.enable = true;
 
 }
