@@ -1,0 +1,1 @@
+Chumi's nixos config.

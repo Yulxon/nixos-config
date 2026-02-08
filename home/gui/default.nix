@@ -5,6 +5,5 @@
     ./gnome.nix
     # ./nixvim.nix
   ];
-
   catppuccin.enable = true;
 }
