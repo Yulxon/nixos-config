@@ -1,11 +1,6 @@
 { pkgs, ... }:
 {
   services = {
-    xserver = {
-      videoDrivers = [ "nvidia" ];
-      xkb.layout = "us";
-    };
-
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
 
@@ -30,17 +25,9 @@
     };
     inputMethod = {
       enable = true;
-
       type = "ibus";
       ibus.engines = with pkgs.ibus-engines; [
         (rime.override {
-
-          # type = "fcitx5";
-          # fcitx5.waylandFrontend = true;
-          # fcitx5.addons = with pkgs; [
-          #   fcitx5-fluent
-          #   (fcitx5-rime.override {
-
           rimeDataPkgs = with pkgs; [
             rime-ice
             rime-moegirl

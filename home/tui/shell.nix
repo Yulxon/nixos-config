@@ -35,19 +35,6 @@
       ];
     };
 
-    # Better shell prmot!
-    starship = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      # settings = {
-      #   character = {
-      #     success_symbol = "[>](bold green)";
-      #     error_symbol = "[>](bold red)";
-      #   };
-      # };
-    };
-
-    zoxide.enable = true;
+    starship.enable = true;
   };
 }

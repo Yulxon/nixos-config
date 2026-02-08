@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   boot = {
     loader = {
@@ -9,15 +9,6 @@
   };
 
   zramSwap.enable = true;
-
-  hardware = {
-    graphics.enable = true;
-    nvidia = {
-      modesetting.enable = true;
-      open = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-  };
 
   services = {
     pipewire = {

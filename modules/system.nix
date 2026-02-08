@@ -16,7 +16,6 @@
       "networkmanager"
       "wheel"
     ];
-    hashedPassword = "$6$yxwzQrlKxnzNiDu/$VNew68h86pEhRZbyNOr6KM8HsAfpZPoCEyoEuuy9Z2ok3OLOUNE0YAb3Q9XZf8PbGS2SEalN.ft08bVbNPEWt0";
   };
 
   environment = {

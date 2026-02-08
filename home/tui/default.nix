@@ -30,6 +30,7 @@
   ];
 
   programs = {
+    zoxide.enable = true;
     bat.enable = true;
     btop.enable = true;
     fzf.enable = true;
