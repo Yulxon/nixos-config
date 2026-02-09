@@ -10,6 +10,8 @@
     gcc
     libtool
 
+    python3
+
     rust-analyzer
     cargo
     clippy
@@ -22,6 +24,8 @@
     pandoc
     prettierd
     multimarkdown
+
+    ispell
   ];
 
   programs = {
