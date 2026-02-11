@@ -37,8 +37,6 @@
           ./host/configuration.nix
           ./modules
 
-          nixos-hardware.nixosModules.asus-fx506hm
-
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

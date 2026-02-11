@@ -7,24 +7,16 @@
   ];
 
   home.packages = with pkgs; [
-    kitty # Terminal emulator
-    mpv # Media player
-    yt-dlp
-    ffmpeg
-    vscodium.fhs # Code editor (FHS compliant)
-    distrobox # Container manager
+    vscodium.fhs
+    distrobox
+    fastfetchMinimal
+    hugo
 
-    ripgrep # Fast search (`rg`)
-    fd # Fast find
-    grc # Generic coloriser
-    file # File type detection
-    tree
+    ripgrep
+    fd
+    grc
+    file
     tealdeer
-    just
-
-    fastfetchMinimal # System info
-
-    hugo # Static site generator
 
     nerd-fonts.symbols-only
   ];

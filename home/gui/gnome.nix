@@ -42,7 +42,7 @@
     # GNOME 桌面界面与外观
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-      accent-color = "green";
+      accent-color = "teal";
       text-scaling-factor = 1.125;
     };
 
@@ -93,6 +93,18 @@
       ];
     };
 
+    # 自定义快捷键 (Kitty & Emacs)
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Super>t";
+      command = "kitty";
+      name = "kitty";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      binding = "<Super>d";
+      command = "emacs";
+      name = "emacs";
+    };
+
     # 快捷键：工作区切换 (Super+1234)
     "org/gnome/desktop/wm/keybindings" = {
       switch-to-workspace-1 = [ "<Super>1" ];
@@ -113,18 +125,6 @@
       switch-to-application-2 = [ ];
       switch-to-application-3 = [ ];
       switch-to-application-4 = [ ];
-    };
-
-    # 自定义快捷键 (Kitty & Emacs)
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>t";
-      command = "kitty";
-      name = "kitty";
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<Super>d";
-      command = "emacs";
-      name = "emacs";
     };
 
     # GNOME Extensions 启用列表

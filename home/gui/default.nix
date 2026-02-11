@@ -3,7 +3,13 @@
   imports = [
     ./emacs.nix
     ./gnome.nix
-    # ./nixvim.nix
+    ./kitty.nix
+    ./mpv.nix
+    ./nixvim.nix
   ];
-  catppuccin.enable = true;
+
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+  };
 }
