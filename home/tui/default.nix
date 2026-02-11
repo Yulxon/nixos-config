@@ -2,6 +2,7 @@
 {
   imports = [
     ./git.nix
+    ./fetch.nix
     ./nix.nix
     ./shell.nix
   ];
@@ -9,7 +10,6 @@
   home.packages = with pkgs; [
     vscodium.fhs
     distrobox
-    fastfetchMinimal
     hugo
 
     ripgrep
@@ -29,7 +29,7 @@
     jq.enable = true;
     nh = {
       enable = true;
-      flake = "/home/chumi/.config/nixos-config/";
+      flake = "$HOME/.config/nixos-config/";
     };
   };
 
