@@ -2,8 +2,9 @@
 {
   imports = [
     ./git.nix
-    ./fetch.nix
+    # ./fetch.nix
     ./nix.nix
+    ./proxy.nix
     ./shell.nix
   ];
 
@@ -11,26 +12,12 @@
     vscodium.fhs
     distrobox
     hugo
-
-    ripgrep
-    fd
-    grc
-    file
     tealdeer
 
-    nerd-fonts.symbols-only
   ];
 
   programs = {
-    zoxide.enable = true;
-    bat.enable = true;
-    btop.enable = true;
-    fzf.enable = true;
-    jq.enable = true;
-    nh = {
-      enable = true;
-      flake = "$HOME/.config/nixos-config/";
-    };
+    fd.enable = true;
+    ripgrep.enable = true;
   };
-
 }

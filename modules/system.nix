@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  networking.hostName = "nixos";
+
   time.timeZone = "Asia/Shanghai";
 
   system = {

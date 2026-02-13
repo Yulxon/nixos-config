@@ -7,7 +7,7 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -31,10 +31,10 @@
       ...
     }:
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.asus = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./host/configuration.nix
+          ./host/asus/configuration.nix
           ./modules
 
           home-manager.nixosModules.home-manager

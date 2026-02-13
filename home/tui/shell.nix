@@ -36,5 +36,10 @@
     };
 
     starship.enable = true;
+
+    fzf.enable = true; # ctrl+r
+    zoxide.enable = true; # z to cd
   };
+
+  home.packages = with pkgs; [ grc ]; # fishPlugins.grc
 }
