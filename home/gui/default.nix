@@ -5,7 +5,7 @@
     ./gnome.nix
     ./kitty.nix
     ./mpv.nix
-    # ./nixvim.nix
+    ./nixvim.nix
   ];
 
   catppuccin = {

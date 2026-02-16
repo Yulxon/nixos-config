@@ -6,14 +6,12 @@
 
   system = {
     stateVersion = "25.11";
-    autoUpgrade = {
-      enable = true;
-      allowReboot = true;
-    };
   };
 
+  programs.fish.enable = true;
   users.users.chumi = {
     isNormalUser = true;
+    shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
       "wheel"

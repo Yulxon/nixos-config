@@ -45,4 +45,7 @@
       # baseIndex = 1;
     };
   };
+
+  services.emacs.enable = true;
+  services.emacs.client.enable = true;
 }

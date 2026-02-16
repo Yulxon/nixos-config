@@ -31,6 +31,8 @@
     options = [
       "subvol=root"
       "compress=zstd"
+      "noatime"
+      "discard=async"
     ];
   };
 
@@ -40,6 +42,8 @@
     options = [
       "subvol=home"
       "compress=zstd"
+      "noatime"
+      "discard=async"
     ];
   };
 
@@ -49,6 +53,8 @@
     options = [
       "subvol=nix"
       "compress=zstd"
+      "noatime"
+      "discard=async"
     ];
   };
 
@@ -58,6 +64,8 @@
     options = [
       "subvol=log"
       "compress=zstd"
+      "noatime"
+      "discard=async"
     ];
   };
 

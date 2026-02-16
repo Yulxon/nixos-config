@@ -101,7 +101,7 @@
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       binding = "<Super>d";
-      command = "emacs";
+      command = "emacsclient -c -a 'emacs'";
       name = "emacs";
     };
 

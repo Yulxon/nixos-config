@@ -17,10 +17,6 @@
   news.display = "silent";
 
   services.home-manager = {
-    autoUpgrade = {
-      enable = true;
-      frequency = "weekly";
-    };
     autoExpire = {
       enable = true;
       frequency = "weekly";

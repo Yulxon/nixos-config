@@ -2,7 +2,7 @@
 {
   imports = [
     ./git.nix
-    # ./fetch.nix
+    ./fetch.nix
     ./nix.nix
     ./proxy.nix
     ./shell.nix
