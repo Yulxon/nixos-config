@@ -5,7 +5,7 @@
 
     config = {
       hwdec = "auto-safe";
-      ytdl-raw-options = "cookies-from-browser=firefox";
+      # ytdl-raw-options = "cookies-from-browser=firefox:~/.var/app/io.gitlab.librewolf-community/.librewolf/";
       screenshot-dir = "~/Pictures/mpv";
     };
 
@@ -19,5 +19,12 @@
       "Alt+8" = "set window-scale 3";
       "Alt+7" = "set window-scale 4";
     };
+  };
+
+  programs.yt-dlp = {
+    enable = true;
+    extraConfig = ''
+      --cookies-from-browser firefox:~/.var/app/io.gitlab.librewolf-community/.librewolf/
+    '';
   };
 }

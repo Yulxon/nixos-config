@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   imports = [
-    ./git.nix
     ./fetch.nix
+    ./git.nix
     ./nix.nix
     ./proxy.nix
     ./shell.nix
@@ -12,12 +12,12 @@
     vscodium.fhs
     distrobox
     hugo
-    tealdeer
 
   ];
 
   programs = {
     fd.enable = true;
     ripgrep.enable = true;
+    tealdeer.enable = true;
   };
 }
