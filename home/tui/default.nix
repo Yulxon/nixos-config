@@ -13,11 +13,16 @@
     distrobox
     hugo
 
+    source-code-pro
+    public-sans
+    eb-garamond
+    lxgw-wenkai
   ];
 
   programs = {
     fd.enable = true;
     ripgrep.enable = true;
     tealdeer.enable = true;
+    nh.enable = true;
   };
 }

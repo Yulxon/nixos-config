@@ -45,9 +45,7 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
-      source-code-pro
       nerd-fonts.symbols-only
-      nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
     ];
     fontconfig = {

@@ -3,7 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-
     inputs.nixos-hardware.nixosModules.asus-fx506hm
   ];
 
