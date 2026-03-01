@@ -30,6 +30,12 @@
 
     fzf.enable = true; # ctrl+r
     zoxide.enable = true; # z to cd
+
+    tmux = {
+      enable = true;
+      shortcut = "a";
+      baseIndex = 1;
+    };
   };
 
   home.packages = with pkgs; [ grc ]; # fishPlugins.grc

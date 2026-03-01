@@ -33,17 +33,6 @@
       enable = true;
       package = pkgs.emacs;
     };
-
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
-
-    tmux = {
-      enable = true;
-      # shortcut = "a";
-      # baseIndex = 1;
-    };
   };
 
   services.emacs.enable = true;

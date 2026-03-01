@@ -24,5 +24,6 @@
     ripgrep.enable = true;
     tealdeer.enable = true;
     nh.enable = true;
+    helix.enable = true;
   };
 }
