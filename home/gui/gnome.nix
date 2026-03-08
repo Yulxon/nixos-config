@@ -10,9 +10,9 @@
     user-themes
   ];
 
-  home.sessionVariables = {
-    GSK_RENDERER = "ngl";
-  };
+  # home.sessionVariables = {
+  #   GSK_RENDERER = "ngl";
+  # };
 
   dconf.settings = {
     "org/gnome/software" = {

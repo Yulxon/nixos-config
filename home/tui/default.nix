@@ -4,7 +4,6 @@
     ./fetch.nix
     ./git.nix
     ./nix.nix
-    ./proxy.nix
     ./shell.nix
   ];
 
