@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware.nix
@@ -28,7 +28,13 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
-  # programs.nix-ld.enable = true;
+  nixpkgs.config.allowUnfree = false;
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (pkgs.lib.getName pkg) [
+      "nvidia-x11"
+      "nvidia-settings"
+    ];
+  programs.nix-ld.enable = true;
 
 }

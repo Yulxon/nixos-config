@@ -23,6 +23,8 @@
     ripgrep.enable = true;
     tealdeer.enable = true;
     nh.enable = true;
+    bat.enable = true;
+    btop.enable = true;
     helix.enable = true;
   };
 }

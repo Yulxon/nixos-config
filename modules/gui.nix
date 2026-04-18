@@ -30,7 +30,7 @@
         (rime.override {
           rimeDataPkgs = with pkgs; [
             rime-ice
-            rime-moegirl
+            # rime-moegirl
             rime-zhwiki
           ];
         })

@@ -70,7 +70,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/18B4-EEB1";
+    device = "/dev/disk/by-uuid/7E28-1611";
     fsType = "vfat";
     options = [
       "umask=0077"
