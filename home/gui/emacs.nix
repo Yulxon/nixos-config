@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     nil
-    nixfmt-rfc-style
+    nixfmt
 
     clang-tools
     cmake
@@ -35,6 +35,6 @@
     };
   };
 
-  services.emacs.enable = true;
-  services.emacs.client.enable = true;
+  # services.emacs.enable = true;
+  # services.emacs.client.enable = true;
 }

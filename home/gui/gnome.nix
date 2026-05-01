@@ -10,9 +10,9 @@
     user-themes
   ];
 
-  # home.sessionVariables = {
-  #   GSK_RENDERER = "ngl";
-  # };
+  home.sessionVariables = {
+    GSK_RENDERER = "ngl";
+  };
 
   dconf.settings = {
     "org/gnome/software" = {
@@ -43,7 +43,7 @@
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       accent-color = "teal";
-      text-scaling-factor = 1.125;
+      # text-scaling-factor = 1.125;
     };
 
     "org/gnome/desktop/wm/preferences" = {
@@ -101,7 +101,7 @@
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       binding = "<Super>d";
-      command = "emacsclient -c -a 'emacs'";
+      command = "emacs";
       name = "emacs";
     };
 

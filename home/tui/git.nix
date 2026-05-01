@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   home.shellAliases = {
     g = "git";
@@ -24,4 +24,7 @@
     };
   };
 
+  home.packages = with pkgs; [
+    git-lfs
+  ];
 }
