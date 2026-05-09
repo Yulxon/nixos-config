@@ -25,6 +25,5 @@
     nh.enable = true;
     bat.enable = true;
     btop.enable = true;
-    helix.enable = true;
   };
 }

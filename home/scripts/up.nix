@@ -22,7 +22,7 @@
 
       run "flake" bash -c "
           cd ~/.config/nixos-config
-          ${pkgs.nix}/bin/nix flake update --commit-lock-file
+          ${pkgs.nix}/bin/nix flake update 
           cd - > /dev/null
       "
     '')

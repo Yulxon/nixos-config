@@ -15,7 +15,7 @@
       dynamic_background_opacity = "yes";
       hide_window_decorations = "yes";
       remember_window_size = "no";
-      initial_window_width = 800;
+      initial_window_width = 960;
       initial_window_height = 600;
 
       # Tabs

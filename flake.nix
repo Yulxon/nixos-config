@@ -2,9 +2,9 @@
   description = "chumi's nixos flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -17,7 +17,7 @@
     #   url = "github:nix-community/nixvim/nixos-25.11";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix/release-25.11";
   };
 
   outputs =
@@ -52,6 +52,5 @@
           }
         ];
       };
-      # formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
 }
