@@ -1,11 +1,11 @@
 { ... }:
 {
   imports = [
-    ./emacs.nix
+    # ./emacs.nix
     ./gnome.nix
     ./kitty.nix
     ./mpv.nix
-    # ./nixvim.nix
+    ./nixvim.nix
   ];
 
   catppuccin = {

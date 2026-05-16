@@ -13,10 +13,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nixvim = {
-    #   url = "github:nix-community/nixvim/nixos-25.11";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     catppuccin.url = "github:catppuccin/nix/release-25.11";
   };
 
@@ -26,7 +26,7 @@
       home-manager,
       nixos-hardware,
       nix-index-database,
-      # nixvim,
+      nixvim,
       catppuccin,
       ...
     }:

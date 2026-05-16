@@ -111,8 +111,8 @@
       switch-to-workspace-2 = [ "<Super>2" ];
       switch-to-workspace-3 = [ "<Super>3" ];
       switch-to-workspace-4 = [ "<Super>4" ];
-      maximize = [ ]; # 记录中已置空
-      unmaximize = [ ];
+      # maximize = [ ]; # 记录中已置空
+      # unmaximize = [ ];
       close = [
         "<Alt>F4"
         "<Super>q"

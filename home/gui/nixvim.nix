@@ -13,6 +13,7 @@
     };
 
     plugins = {
+      comment.enable = true;
       web-devicons.enable = true;
       lualine.enable = true;
       bufferline.enable = true;
