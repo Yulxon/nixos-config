@@ -4,8 +4,7 @@
     enable = true;
 
     config = {
-      hwdec = "auto-safe";
-      # ytdl-raw-options = "cookies-from-browser=firefox:~/.var/app/io.gitlab.librewolf-community/.librewolf/";
+      hwdec = "auto-copy";
       screenshot-dir = "~/Pictures/mpv";
     };
 

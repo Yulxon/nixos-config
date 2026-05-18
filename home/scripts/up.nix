@@ -18,8 +18,6 @@
 
       run "tldr" ${pkgs.tealdeer}/bin/tldr --update
 
-      # run "doom" bash -c "$HOME/.config/emacs/bin/doom upgrade -!"
-
       run "flake" bash -c "
           cd ~/.config/nixos-config
           ${pkgs.nix}/bin/nix flake update 

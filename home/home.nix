@@ -15,11 +15,4 @@
   programs.home-manager.enable = true;
 
   news.display = "silent";
-
-  services.home-manager = {
-    autoExpire = {
-      enable = true;
-      frequency = "weekly";
-    };
-  };
 }

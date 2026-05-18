@@ -35,6 +35,6 @@
       "nvidia-x11"
       "nvidia-settings"
     ];
-  programs.nix-ld.enable = true;
+  # programs.nix-ld.enable = true;
 
 }

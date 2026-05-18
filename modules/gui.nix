@@ -5,8 +5,21 @@
     desktopManager.gnome.enable = true;
 
     flatpak.enable = true;
-
   };
+
+  environment.gnome.excludePackages = with pkgs; [
+    decibels
+    epiphany
+    gnome-contacts
+    gnome-maps
+    gnome-music
+    gnome-weather
+    gnome-connections
+    showtime
+    simple-scan
+    snapshot
+    yelp
+  ];
 
   environment.systemPackages = with pkgs; [
     gnome-tweaks
@@ -16,12 +29,10 @@
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    supportedLocales = [
-      "en_US.UTF-8/UTF-8"
-      "zh_CN.UTF-8/UTF-8"
-    ];
+    extraLocales = [ "zh_CN.UTF-8/UTF-8" ];
     extraLocaleSettings = {
-      LC_ALL = "en_US.UTF-8";
+      LC_MESSAGES = "en_US.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
     };
     inputMethod = {
       enable = true;

@@ -3,6 +3,13 @@
   programs = {
     bash = {
       enable = true;
+      initExtra = ''
+        # "check if parent process is not fish" && "make nested shells work properly"
+        if grep -qv fish /proc/$PPID/comm && [[ $SHLVL == [12] ]]; then
+            # set $SHELL for better integration with programs like nix shell, tmux, etc.
+            SHELL=${pkgs.fish}/bin/fish exec fish
+        fi
+      '';
     };
 
     fish = {
@@ -10,18 +17,18 @@
       interactiveShellInit = ''
         set -g fish_greeting "" # Disable greeting
       '';
-      plugins = [
+      plugins = with pkgs.fishPlugins; [
         {
           name = "grc";
-          src = pkgs.fishPlugins.grc.src;
+          src = grc.src;
         }
         {
           name = "autopair";
-          src = pkgs.fishPlugins.autopair.src;
+          src = autopair.src;
         }
         {
           name = "fzf-fish";
-          src = pkgs.fishPlugins.fzf-fish.src;
+          src = fzf-fish.src;
         }
       ];
     };

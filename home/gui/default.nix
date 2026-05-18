@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    # ./emacs.nix
     ./gnome.nix
     ./kitty.nix
     ./mpv.nix

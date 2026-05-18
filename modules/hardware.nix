@@ -10,6 +10,7 @@
 
   zramSwap.enable = true;
 
+  security.rtkit.enable = true; # for Pipewire, use the realtime scheduler
   services = {
     pipewire = {
       enable = true;
