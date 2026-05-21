@@ -4,7 +4,7 @@
     enable = true;
 
     config = {
-      hwdec = "auto-copy";
+      hwdec = "auto-safe";
       screenshot-dir = "~/Pictures/mpv";
     };
 

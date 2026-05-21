@@ -7,8 +7,8 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,15 +21,11 @@
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      home-manager,
-      nixos-hardware,
-      nix-index-database,
-      nixvim,
-      catppuccin,
-      ...
-    }:
+    inputs@{ nixpkgs, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
     {
       nixosConfigurations.asus = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
@@ -44,12 +40,18 @@
             home-manager.users.chumi = {
               imports = [
                 ./home/home.nix
-                nix-index-database.homeModules.default
-                catppuccin.homeModules.catppuccin
               ];
             };
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
+        ];
+      };
+
+      formatter.${system} = pkgs.nixfmt;
+      devShells.${system}.default = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          nixd
+          nixfmt
         ];
       };
     };

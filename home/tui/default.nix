@@ -10,9 +10,6 @@
     distrobox
 
     source-code-pro
-    public-sans
-    eb-garamond
-    lxgw-wenkai
   ];
 
   programs = {
@@ -20,7 +17,6 @@
     ripgrep.enable = true;
     tealdeer.enable = true;
     nh.enable = true;
-    bat.enable = true;
-    btop.enable = true;
+    htop.enable = true;
   };
 }

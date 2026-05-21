@@ -26,21 +26,21 @@
     };
 
     # 系统代理设置 (Manual: 127.0.0.1:7890/7891)
-    # "system/proxy" = {
-    #   mode = "manual";
-    # };
-    # "system/proxy/http" = {
-    #   host = "127.0.0.1";
-    #   port = 7890;
-    # };
-    # "system/proxy/https" = {
-    #   host = "127.0.0.1";
-    #   port = 7890;
-    # };
-    # "system/proxy/socks" = {
-    #   host = "127.0.0.1";
-    #   port = 7891;
-    # };
+    "system/proxy" = {
+      mode = "manual";
+    };
+    "system/proxy/http" = {
+      host = "127.0.0.1";
+      port = 7890;
+    };
+    "system/proxy/https" = {
+      host = "127.0.0.1";
+      port = 7890;
+    };
+    "system/proxy/socks" = {
+      host = "127.0.0.1";
+      port = 7891;
+    };
 
     # GNOME 桌面界面与外观
     "org/gnome/desktop/interface" = {
@@ -92,17 +92,21 @@
       www = [ "<Super>b" ];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
       ];
     };
 
-    # 自定义快捷键 (Kitty & Emacs)
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" = {
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>t";
       command = "kitty";
       name = "kitty";
     };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      binding = "<Super><Shift>b";
+      command = "flatpak run io.gitlab.librewolf-community --private-window";
+      name = "librewolf-community";
+    };
 
-    # 快捷键：工作区切换 (Super+1234)
     "org/gnome/desktop/wm/keybindings" = {
       switch-to-workspace-1 = [ "<Super>1" ];
       switch-to-workspace-2 = [ "<Super>2" ];

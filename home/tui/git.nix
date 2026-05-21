@@ -8,8 +8,10 @@
   programs = {
     git = {
       enable = true;
-      userName = "Yulxon";
-      userEmail = "2053395074@qq.com";
+      settings = {
+        user.name = "Yulxon";
+        user.email = "2053395074@qq.com";
+      };
       lfs.enable = true;
     };
     lazygit.enable = true;
@@ -19,7 +21,6 @@
       settings = {
         git_protocol = "ssh";
       };
-      gitCredentialHelper.enable = true;
     };
   };
 }

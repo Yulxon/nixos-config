@@ -39,7 +39,7 @@
     zoxide.enable = true; # z to cd
 
     tmux = {
-      enable = true;
+      enable = false;
       shortcut = "a";
       baseIndex = 1;
     };

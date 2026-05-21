@@ -23,11 +23,5 @@
       tab_bar_style = "powerline";
     };
 
-    keybindings = {
-      "ctrl+shift+enter" = "new_window";
-      "ctrl+shift+t" = "new_tab";
-      "ctrl+shift+w" = "close_tab";
-    };
-
   };
 }

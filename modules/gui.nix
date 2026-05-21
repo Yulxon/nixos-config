@@ -21,10 +21,6 @@
     yelp
   ];
 
-  environment.systemPackages = with pkgs; [
-    gnome-tweaks
-  ];
-
   virtualisation.podman.enable = true;
 
   i18n = {
