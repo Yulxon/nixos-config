@@ -1,47 +1,33 @@
 { pkgs, ... }:
 
 {
-  programs.vscode = {
+  programs.vscodium = {
     enable = true;
     package = pkgs.vscodium.fhs;
 
-    extensions =
-      with pkgs.vscode-extensions;
-      [
-        pnohta.adwaita-theme
-
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
         ms-vscode.cpptools
         ms-python.python
         ms-python.vscode-pylance
         rust-lang.rust-analyzer
-
-        chris-hayes.chatgpt-reborn
-      ]
-      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        /*
-          {
-            name = "codex";
-            publisher = "publisher-name";
-            version = "x.y.z";
-            sha256 = "0000000000000000000000000000000000000000000000000000";
-          }
-        */
+        # chris-hayes.chatgpt-reborn
       ];
 
-    userSettings = {
-      "workbench.colorTheme" = "Adwaita Dark";
-      "window.titleBarStyle" = "custom";
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "nixpkgs-fmt";
+      userSettings = {
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nixd";
+        "nix.formatterPath" = "nixfmt";
 
-      "rust-analyzer.server.path" = "rust-analyzer";
+        "rust-analyzer.server.path" = "rust-analyzer";
 
-      "python.languageServer" = "Pylance";
+        "python.languageServer" = "Pylance";
 
-      "editor.formatOnSave" = true;
-      "editor.fontSize" = 14;
+        "editor.formatOnSave" = true;
+        "editor.fontSize" = 14;
+        "terminal.integrated.initialHint" = false;
+      };
     };
   };
-
 }

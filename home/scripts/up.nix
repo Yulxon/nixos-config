@@ -14,6 +14,8 @@
 
       run "flatpak" ${pkgs.flatpak}/bin/flatpak update -y
 
+      run "protonplus" ${pkgs.flatpak}/bin/flatpak run com.vysp3r.ProtonPlus update all
+
       run "distrobox" ${pkgs.distrobox}/bin/distrobox upgrade --all
 
       run "tldr" ${pkgs.tealdeer}/bin/tldr --update
