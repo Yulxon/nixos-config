@@ -10,6 +10,9 @@
     distrobox
 
     source-code-pro
+
+    nixd
+    nixfmt
   ];
 
   programs = {
@@ -17,6 +20,5 @@
     ripgrep.enable = true;
     tealdeer.enable = true;
     nh.enable = true;
-    htop.enable = true;
   };
 }

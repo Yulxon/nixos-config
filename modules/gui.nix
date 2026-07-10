@@ -3,7 +3,6 @@
   services = {
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-
     flatpak.enable = true;
   };
 
@@ -37,7 +36,6 @@
         (rime.override {
           rimeDataPkgs = with pkgs; [
             rime-ice
-            # rime-moegirl
             rime-zhwiki
           ];
         })
@@ -52,26 +50,30 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
+      twemoji-color-font
       nerd-fonts.symbols-only
-      nerd-fonts.jetbrains-mono
+      iosevka
     ];
     fontconfig = {
+      enable = true;
       defaultFonts = {
         sansSerif = [
-          "Noto Sans"
           "Noto Sans CJK SC"
+          "Noto Sans"
+          "Twemoji"
         ];
         serif = [
-          "Noto Serif"
           "Noto Serif CJK SC"
+          "Noto Serif"
+          "Twemoji"
         ];
         monospace = [
-          "Noto Sans Mono"
-          "JetBrainsMono Nerd Font"
+          "Noto Sans Mono CJK SC"
+          "Symbols Nerd Font"
+          "Twemoji"
         ];
-        emoji = [ "Noto Color Emoji" ];
+        emoji = [ "Twemoji" ];
       };
     };
   };
-
 }

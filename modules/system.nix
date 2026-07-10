@@ -13,7 +13,7 @@
 
   services.mihomo = {
     enable = true;
-    tunMode = false;
+    # tunMode = true;
     webui = pkgs.metacubexd;
     configFile = "/home/chumi/.config/mihomo/config.yaml";
   };

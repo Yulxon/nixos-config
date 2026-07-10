@@ -2,9 +2,9 @@
   description = "chumi's nixos flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -14,18 +14,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.11";
+      url = "github:nix-community/nixvim/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix/release-25.11";
+    catppuccin.url = "github:catppuccin/nix/release-26.05";
   };
 
   outputs =
     inputs@{ nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
     {
       nixosConfigurations.asus = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
@@ -44,14 +40,6 @@
             };
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
-        ];
-      };
-
-      formatter.${system} = pkgs.nixfmt;
-      devShells.${system}.default = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
-          nixd
-          nixfmt
         ];
       };
     };

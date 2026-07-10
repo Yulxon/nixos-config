@@ -7,7 +7,7 @@
       { package = alphabetical-app-grid; }
       { package = appindicator; }
       { package = caffeine; }
-      { package = tiling-assistant; }
+      # { package = tiling-assistant; }
       { package = hide-top-bar; }
       { package = user-themes; }
     ];
@@ -25,7 +25,6 @@
       donation-reminder-enabled = false;
     };
 
-    # 系统代理设置 (Manual: 127.0.0.1:7890/7891)
     "system/proxy" = {
       mode = "manual";
     };
@@ -39,30 +38,29 @@
     };
     "system/proxy/socks" = {
       host = "127.0.0.1";
-      port = 7891;
+      port = 7890;
     };
 
-    # GNOME 桌面界面与外观
     "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      accent-color = "teal";
+      # color-scheme = "prefer-dark";
+      # accent-color = "teal";
       # text-scaling-factor = 1.125;
+      reduced-motion = "reduce";
     };
 
     "org/gnome/desktop/wm/preferences" = {
-      num-workspaces = 4;
+      # num-workspaces = 4;
     };
 
     "org/gnome/mutter" = {
-      dynamic-workspaces = false;
-      # edge-tiling = false; # 被 Tiling Assistant 接管或禁用
+      dynamic-workspaces = true;
+      edge-tiling = true;
       experimental-features = [
         "scale-monitor-framebuffer"
         "xwayland-native-scaling"
       ];
     };
 
-    # 输入法设置 (US 键盘 + Rime)
     "org/gnome/desktop/input-sources" = {
       sources = [
         (lib.hm.gvariant.mkTuple [
@@ -76,7 +74,6 @@
       ];
     };
 
-    # 健康与休息提醒 (Wellbeing)
     "org/gnome/desktop/break-reminders/movement" = {
       duration-seconds = lib.hm.gvariant.mkUint32 300;
       interval-seconds = lib.hm.gvariant.mkUint32 1800;
@@ -86,7 +83,6 @@
       play-sound = false;
     };
 
-    # 快捷键：系统默认功能改键
     "org/gnome/settings-daemon/plugins/media-keys" = {
       home = [ "<Super>f" ];
       www = [ "<Super>b" ];
@@ -103,7 +99,7 @@
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       binding = "<Super><Shift>b";
-      command = "flatpak run io.gitlab.librewolf-community --private-window";
+      command = "io.gitlab.librewolf-community --private-window";
       name = "librewolf-community";
     };
 
@@ -112,7 +108,7 @@
       switch-to-workspace-2 = [ "<Super>2" ];
       switch-to-workspace-3 = [ "<Super>3" ];
       switch-to-workspace-4 = [ "<Super>4" ];
-      # maximize = [ ]; # 记录中已置空
+      # maximize = [ ];
       # unmaximize = [ ];
       close = [
         "<Alt>F4"
@@ -120,7 +116,6 @@
       ];
     };
 
-    # 屏蔽 Shell 默认的 Super+数字 切换应用，防止与切换工作区冲突
     "org/gnome/shell/keybindings" = {
       switch-to-application-1 = [ ];
       switch-to-application-2 = [ ];
@@ -128,12 +123,14 @@
       switch-to-application-4 = [ ];
     };
 
-    # GNOME Extensions 启用列表
-    "org/gnome/shell" = {
-      favorite-apps = [ ]; # 记录中最后将其清空了
+    "org/gnome/shell/app-switcher" = {
+      current-workspace-only = true;
     };
 
-    # Dconf Editor 设置
+    "org/gnome/shell" = {
+      favorite-apps = [ ];
+    };
+
     "ca/desrt/dconf-editor" = {
       show-warning = false;
     };

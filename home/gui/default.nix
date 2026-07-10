@@ -5,6 +5,7 @@
     ./kitty.nix
     ./mpv.nix
     ./nixvim.nix
+    ./vscode.nix
 
     inputs.catppuccin.homeModules.catppuccin
   ];
