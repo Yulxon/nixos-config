@@ -5,13 +5,15 @@
     ./kitty.nix
     ./mpv.nix
     ./nixvim.nix
-    ./vscode.nix
+    ./vscodium.nix
+    ./librewolf.nix
 
     inputs.catppuccin.homeModules.catppuccin
   ];
 
   catppuccin = {
-    enable = true;
-    flavor = "mocha";
+    fish.enable = true;
+    starship.enable = true;
+    kitty.enable = true;
   };
 }

@@ -14,7 +14,6 @@
   hardware = {
     steam-hardware.enable = true;
     uinput.enable = true;
-    xpadneo.enable = true;
   };
 
   users.users.chumi = {

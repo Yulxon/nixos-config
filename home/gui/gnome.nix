@@ -42,10 +42,10 @@
     };
 
     "org/gnome/desktop/interface" = {
-      # color-scheme = "prefer-dark";
-      # accent-color = "teal";
+      color-scheme = "prefer-dark";
+      accent-color = "teal";
       # text-scaling-factor = 1.125;
-      reduced-motion = "reduce";
+      enable-animations = false;
     };
 
     "org/gnome/desktop/wm/preferences" = {
@@ -88,7 +88,6 @@
       www = [ "<Super>b" ];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
       ];
     };
 
@@ -96,11 +95,6 @@
       binding = "<Super>t";
       command = "kitty";
       name = "kitty";
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<Super><Shift>b";
-      command = "io.gitlab.librewolf-community --private-window";
-      name = "librewolf-community";
     };
 
     "org/gnome/desktop/wm/keybindings" = {

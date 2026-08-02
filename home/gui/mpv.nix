@@ -23,7 +23,7 @@
   programs.yt-dlp = {
     enable = true;
     extraConfig = ''
-      --cookies-from-browser firefox:~/.var/app/io.gitlab.librewolf-community/.librewolf/
+      --cookies-from-browser firefox:~/.config/librewolf/librewolf/
     '';
   };
 }

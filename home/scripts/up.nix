@@ -21,7 +21,7 @@
       run "tldr" ${pkgs.tealdeer}/bin/tldr --update
 
       run "flake" bash -c "
-          cd ~/.config/nixos-config
+          cd ~/Projects/nixos-config
           ${pkgs.nix}/bin/nix flake update 
           cd - > /dev/null
       "

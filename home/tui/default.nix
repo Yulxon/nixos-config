@@ -11,8 +11,12 @@
 
     source-code-pro
 
+    clang
+    clang-tools
     nixd
     nixfmt
+    rust-analyzer
+
   ];
 
   programs = {
