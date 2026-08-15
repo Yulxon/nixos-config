@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ flake, pkgs, ... }:
 {
   imports = [
     ./gnome.nix
@@ -6,9 +6,12 @@
     ./mpv.nix
     ./nixvim.nix
     ./vscodium.nix
-    ./librewolf.nix
 
-    inputs.catppuccin.homeModules.catppuccin
+    flake.inputs.catppuccin.homeModules.catppuccin
+  ];
+
+  home.packages = with pkgs; [
+    pince # Gaming
   ];
 
   catppuccin = {
@@ -16,4 +19,6 @@
     starship.enable = true;
     kitty.enable = true;
   };
+
+  programs.librewolf.enable = true;
 }

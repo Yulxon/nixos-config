@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ flake, ... }:
 {
   imports = [
-    inputs.nixvim.homeModules.nixvim
+    flake.inputs.nixvim.homeModules.nixvim
   ];
 
   programs.nixvim = {

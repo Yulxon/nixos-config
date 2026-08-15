@@ -7,7 +7,6 @@
       { package = alphabetical-app-grid; }
       { package = appindicator; }
       { package = caffeine; }
-      # { package = tiling-assistant; }
       { package = hide-top-bar; }
       { package = user-themes; }
     ];
@@ -44,12 +43,6 @@
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       accent-color = "teal";
-      # text-scaling-factor = 1.125;
-      enable-animations = false;
-    };
-
-    "org/gnome/desktop/wm/preferences" = {
-      # num-workspaces = 4;
     };
 
     "org/gnome/mutter" = {
@@ -74,15 +67,6 @@
       ];
     };
 
-    "org/gnome/desktop/break-reminders/movement" = {
-      duration-seconds = lib.hm.gvariant.mkUint32 300;
-      interval-seconds = lib.hm.gvariant.mkUint32 1800;
-      play-sound = false;
-    };
-    "org/gnome/desktop/break-reminders/eyesight" = {
-      play-sound = false;
-    };
-
     "org/gnome/settings-daemon/plugins/media-keys" = {
       home = [ "<Super>f" ];
       www = [ "<Super>b" ];
@@ -98,31 +82,18 @@
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      switch-to-workspace-1 = [ "<Super>1" ];
-      switch-to-workspace-2 = [ "<Super>2" ];
-      switch-to-workspace-3 = [ "<Super>3" ];
-      switch-to-workspace-4 = [ "<Super>4" ];
-      # maximize = [ ];
-      # unmaximize = [ ];
+      switch-to-workspace-1 = [ "<Super>F1" ];
+      switch-to-workspace-2 = [ "<Super>F2" ];
+      switch-to-workspace-3 = [ "<Super>F3" ];
+      switch-to-workspace-4 = [ "<Super>F4" ];
       close = [
         "<Alt>F4"
         "<Super>q"
       ];
     };
 
-    "org/gnome/shell/keybindings" = {
-      switch-to-application-1 = [ ];
-      switch-to-application-2 = [ ];
-      switch-to-application-3 = [ ];
-      switch-to-application-4 = [ ];
-    };
-
     "org/gnome/shell/app-switcher" = {
       current-workspace-only = true;
-    };
-
-    "org/gnome/shell" = {
-      favorite-apps = [ ];
     };
 
     "ca/desrt/dconf-editor" = {

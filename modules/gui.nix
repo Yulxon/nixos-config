@@ -7,17 +7,14 @@
   };
 
   environment.gnome.excludePackages = with pkgs; [
-    decibels
-    epiphany
     gnome-contacts
     gnome-maps
     gnome-music
-    gnome-weather
     gnome-connections
-    showtime
     simple-scan
     snapshot
     yelp
+    gnome-tour
   ];
 
   virtualisation.podman.enable = true;
@@ -37,6 +34,7 @@
           rimeDataPkgs = with pkgs; [
             rime-ice
             rime-zhwiki
+            rime-moegirl
           ];
         })
       ];

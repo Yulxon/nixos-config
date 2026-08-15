@@ -1,16 +1,17 @@
-{ pkgs, ... }:
+{ ... }:
 {
   boot = {
     loader = {
       systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 6;
       efi.canTouchEfiVariables = true;
     };
-    # kernelPackages = pkgs.linuxPackages_zen;
   };
 
   zramSwap.enable = true;
 
   security.rtkit.enable = true; # for Pipewire, use the realtime scheduler
+
   services = {
     pipewire = {
       enable = true;

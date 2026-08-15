@@ -3,6 +3,7 @@
   imports = [
     ./hardware.nix
     ./system.nix
+    ./proxy.nix
     ./gui.nix
   ];
 
@@ -33,12 +34,4 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.config.allowUnfreePredicate =
-  #   pkg:
-  #   builtins.elem (lib.getName pkg) [
-  #     "nvidia-x11"
-  #     "nvidia-settings"
-  #   ];
-  # programs.nix-ld.enable = true;
-
 }

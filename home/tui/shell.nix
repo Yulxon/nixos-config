@@ -33,16 +33,18 @@
       ];
     };
 
-    starship.enable = true;
-
+    starship = {
+      enable = true;
+      settings = {
+        character = {
+          success_symbol = "[>](bold green)";
+          error_symbol = "[>](bold red)";
+        };
+      };
+      presets = [ "plain-text-symbols" ];
+    };
     fzf.enable = true; # ctrl+r
     zoxide.enable = true; # z to cd
-
-    tmux = {
-      enable = false;
-      shortcut = "a";
-      baseIndex = 1;
-    };
   };
 
   home.packages = with pkgs; [ grc ]; # fishPlugins.grc
