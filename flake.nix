@@ -19,6 +19,11 @@
       url = "github:AceSLS/SLSsteam";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    enter-the-wired = {
+      url = "github:ciscosweater/enter-the-wired";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    claude-code.url = "github:sadjow/claude-code-nix";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-unified.url = "github:srid/nixos-unified";

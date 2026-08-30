@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# Headcrab-injected Steam launcher — Nix-managed (home-manager).
+#
+# Installed to ~/.steam/steam/steam.sh by the `headcrab` command.
+# It sets up SLSsteam (LD_AUDIT) + CloudRedirect (LD_PRELOAD) injection and
+# then hands off to the stock client launcher at ~/.steam/steam/client.sh
+# (the unmodified steam.sh of the headcrab-compatible Steam client).
+#
+# @SLSSTEAM_LIB@ and @CLOUDREDIRECT@ are substituted with the Nix store
+# paths of the pinned SLSsteam / CloudRedirect packages at build time.
+
+STEAM_CLIENT="$HOME/.steam/steam/client.sh"
+INJECT_SLS="LD_AUDIT=@SLSSTEAM_LIB@/library-inject.so:@SLSSTEAM_LIB@/SLSsteam.so"
+INJECT_CR="LD_PRELOAD=@CLOUDREDIRECT@/cloud_redirect.so"
+NOTIF="$HOME/.local/share/icons/hicolor/48x48/apps/headcrab.png"
+
+SteamInstallDir=$HOME/.steam/steam
+
+wheresteampackage() {
+    cd "$SteamInstallDir/package" 2>/dev/null || return 1
+}
+
+client_version() {
+    local v="" n f
+    for f in steam_client_ubuntu12.installed steam_client_ubuntu12.manifest steam_client_ubuntu12; do
+        [ -f "$f" ] || continue
+        n=$(grep '"version"' "$f" | head -1 | awk -F'"' '{print $4}')
+        [ -n "$n" ] || continue
+        if [ -z "$v" ] || [ "$n" -gt "$v" ]; then
+            v="$n"
+        fi
+    done
+    echo "${v:-unknown}"
+}
+
+GameLauncher() {
+    local ver
+    if ver=$(wheresteampackage && client_version); then
+        echo "SteamClientVersion: $ver" >&2
+    fi
+    if [ -n "${HEADCRAB_SILENT:-}" ]; then
+        : # suppress the notification
+    elif command -v notify-send >/dev/null 2>&1 && [ -f "$NOTIF" ]; then
+        notify-send -e -i "$NOTIF" -a "headcrab" "The Headcrab Approaches.." "Client: $ver" 2>/dev/null &
+    fi
+    export $INJECT_SLS
+    export $INJECT_CR
+    source "$STEAM_CLIENT" "$@"
+}
+
+steam() {
+    GameLauncher "$@"
+}
+
+steam "$@"

@@ -1,7 +1,4 @@
 { flake, pkgs, ... }:
-let
-  sls-steam = flake.inputs.sls-steam.packages.${pkgs.stdenv.hostPlatform.system}.sls-steam;
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -15,9 +12,8 @@ in
 
   programs.steam = {
     enable = true;
-    package = pkgs.steam.override {
-      extraEnv.LD_AUDIT = "${sls-steam}/library-inject.so:${sls-steam}/SLSsteam.so";
-    };
+    # SLSsteam injection is handled by the home-manager `headcrab` module
+    # (patched ~/.steam/steam/steam.sh), so no extraEnv override here.
     extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];

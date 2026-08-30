@@ -12,9 +12,9 @@
     ];
   };
 
-  home.sessionVariables = {
-    GSK_RENDERER = "gl";
-  };
+  # home.sessionVariables = {
+  #   GSK_RENDERER = "gl";
+  # };
 
   dconf.settings = {
     "org/gnome/software" = {
@@ -46,7 +46,7 @@
     };
 
     "org/gnome/mutter" = {
-      dynamic-workspaces = true;
+      dynamic-workspaces = false;
       edge-tiling = true;
       experimental-features = [
         "scale-monitor-framebuffer"
@@ -92,9 +92,9 @@
       ];
     };
 
-    "org/gnome/shell/app-switcher" = {
-      current-workspace-only = true;
-    };
+    # "org/gnome/shell/app-switcher" = {
+    #   current-workspace-only = true;
+    # };
 
     "ca/desrt/dconf-editor" = {
       show-warning = false;
