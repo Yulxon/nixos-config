@@ -4,14 +4,6 @@
     flake.inputs.nix-index-database.homeModules.default
   ];
 
-  nix = {
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
-
   programs = {
     nix-index = {
       enable = true;

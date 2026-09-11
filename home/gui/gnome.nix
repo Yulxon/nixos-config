@@ -1,20 +1,21 @@
 { pkgs, lib, ... }:
 
+let
+  # Proxy endpoint shared with modules/proxy.nix (single source of truth).
+  proxy = import ../../shared/proxy.nix;
+in
 {
-  programs.gnome-shell = {
-    enable = true;
-    extensions = with pkgs.gnomeExtensions; [
-      { package = alphabetical-app-grid; }
-      { package = appindicator; }
-      { package = caffeine; }
-      { package = hide-top-bar; }
-      { package = user-themes; }
-    ];
-  };
+  home.packages = with pkgs.gnomeExtensions; [
+    alphabetical-app-grid
+    appindicator
+    caffeine
+    hide-top-bar
+    user-themes
+  ];
 
-  # home.sessionVariables = {
-  #   GSK_RENDERER = "gl";
-  # };
+  home.sessionVariables = {
+    GSK_RENDERER = "ngl";
+  };
 
   dconf.settings = {
     "org/gnome/software" = {
@@ -28,16 +29,13 @@
       mode = "manual";
     };
     "system/proxy/http" = {
-      host = "127.0.0.1";
-      port = 7890;
+      inherit (proxy) host port;
     };
     "system/proxy/https" = {
-      host = "127.0.0.1";
-      port = 7890;
+      inherit (proxy) host port;
     };
     "system/proxy/socks" = {
-      host = "127.0.0.1";
-      port = 7890;
+      inherit (proxy) host port;
     };
 
     "org/gnome/desktop/interface" = {
@@ -70,6 +68,7 @@
     "org/gnome/settings-daemon/plugins/media-keys" = {
       home = [ "<Super>f" ];
       www = [ "<Super>b" ];
+      control-center = [ "<Super>i" ];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
       ];

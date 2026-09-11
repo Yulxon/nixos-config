@@ -18,6 +18,7 @@
   ];
 
   virtualisation.podman.enable = true;
+  # services.linyaps.enable = true;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -50,7 +51,7 @@
       noto-fonts-color-emoji
       twemoji-color-font
       nerd-fonts.symbols-only
-      iosevka
+      iosevka-bin
     ];
     fontconfig = {
       enable = true;

@@ -8,6 +8,25 @@
     };
   };
 
+  fileSystems."/" = {
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
+  };
+  fileSystems."/home" = {
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
+  };
+  fileSystems."/nix" = {
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
+  };
+
   zramSwap.enable = true;
 
   security.rtkit.enable = true; # for Pipewire, use the realtime scheduler

@@ -92,8 +92,10 @@ EOF
       fi
       local ret=0
       # Note: since nix 2.18-ish, `nix flake update` takes *input names* as
-      # positionals; the flake to update goes to --flake.
-      ${pkgs.nix}/bin/nix flake update --flake "$FLAKE_DIR" || ret=1
+      # positionals; the flake to update goes to --flake. Only refresh the
+      # primary inputs (nixos-unified.primary-inputs in flake.nix) so the
+      # other inputs stay pinned.
+      ${pkgs.nix}/bin/nix flake update nixpkgs home-manager --flake "$FLAKE_DIR" || ret=1
       if [ "$ret" -eq 0 ] && command -v git >/dev/null 2>&1 &&
          git -C "$FLAKE_DIR" rev-parse --git-dir >/dev/null 2>&1 &&
          ! git -C "$FLAKE_DIR" diff --quiet -- flake.lock 2>/dev/null; then
@@ -108,7 +110,7 @@ EOF
         echo "  $C_YELLOW(plum dir not found: $RIME_DIR — skipping)$C_RESET"
         return 0
       fi
-      ( cd "$RIME_DIR" && bash rime-install iDvel/rime-ice )
+      ( cd "$RIME_DIR" && ${pkgs.bash}/bin/bash rime-install iDvel/rime-ice )
     }
 
     step_rebuild() {

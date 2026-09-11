@@ -4,8 +4,6 @@
     ./git.nix
     ./nix.nix
     ./shell.nix
-    ./claude.nix
-    ./codex.nix
   ];
 
   home.packages = with pkgs; [

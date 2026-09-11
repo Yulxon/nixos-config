@@ -4,7 +4,7 @@
     enable = true;
 
     font = {
-      name = "Source Code Pro";
+      name = "Iosevka";
       # size = 10.5;
     };
 
