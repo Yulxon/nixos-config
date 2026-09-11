@@ -4,9 +4,9 @@ let
   # ---------------------------------------------------------------------------
   # `up` — one-command system update.
   #
-  #   up                  flatpak / distrobox / tldr / flake.lock / rime-ice
+  #   up                  flatpak / distrobox / tldr / npm / flake.lock / rime-ice
   #   up -r               ... then rebuild the system (nixos-rebuild switch)
-  #   up -s flake -s rime skip steps (-s is repeatable)
+  #   up -s npm -s rime   skip steps (-s is repeatable)
   #   up -n               no desktop notification at the end
   #   up -l               list steps and exit
   #   up -h               show help
@@ -55,12 +55,12 @@ $C_BOLD up$C_RESET — one-command system update
 usage: up [options]
 
   -r        rebuild the system afterwards (nixos-rebuild switch --flake $FLAKE_DIR#$FLAKE_HOST)
-  -s STEP   skip a step (repeatable, e.g. -s tldr -s rime)
+  -s STEP   skip a step (repeatable, e.g. -s npm -s rime)
   -n        no desktop notification at the end
   -l        list steps and exit
   -h        show this help
 
-steps: flatpak distrobox tldr flake rime [rebuild]
+steps: flatpak distrobox tldr npm flake rime [rebuild]
 EOF
     }
 
@@ -83,6 +83,15 @@ EOF
 
     step_tldr() {
       ${pkgs.tealdeer}/bin/tldr --update
+    }
+
+    step_npm() {
+      # Global npm packages install into the ~/.local/npm prefix set up by
+      # home/tui/dsh.nix. `install -g <pkg>@latest` installs on the first run
+      # and upgrades afterwards; npm itself is listed explicitly because a
+      # running npm cannot replace itself in place.
+      ${pkgs.nodejs}/bin/npm install -g --no-fund --no-audit \
+        @deepseek-ai/dsh@latest npm@latest
     }
 
     step_flake() {
@@ -185,7 +194,7 @@ EOF
       esac
     done
 
-    STEPS=(flatpak distrobox tldr flake rime)
+    STEPS=(flatpak distrobox tldr npm flake rime)
     [ "$DO_REBUILD" = 1 ] && STEPS+=(rebuild)
 
     if [ "$LIST_ONLY" = 1 ]; then

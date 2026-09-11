@@ -31,12 +31,14 @@ nix run .#update        # update nixpkgs + home-manager inputs
 Day-to-day updates go through the `up` script installed by `home/scripts/default.nix`:
 
 ```sh
-up                      # flatpak / distrobox / tldr / flake.lock / rime-ice
+up                      # flatpak / distrobox / tldr / npm / flake.lock / rime-ice
 up -r                   # ... then nixos-rebuild switch
-up -s flake -s rime     # skip steps
+up -s npm -s rime       # skip steps
 up -l                   # list steps
 ```
 
-Only the primary inputs (`nixpkgs`, `home-manager`, see
-`nixos-unified.primary-inputs` in `flake.nix`) are refreshed; logs are written to
-`~/.local/state/up/`.
+The `npm` step installs/updates the global npm tools — currently
+`@deepseek-ai/dsh` and npm itself — under the `~/.local/npm` prefix configured by
+`home/tui/dsh.nix`; `~/.local/npm/bin` is on `PATH`. Only the primary inputs
+(`nixpkgs`, `home-manager`, see `nixos-unified.primary-inputs` in `flake.nix`)
+are refreshed; logs are written to `~/.local/state/up/`.
