@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
 {
   imports = [
     ./dsh.nix
@@ -20,6 +20,9 @@
     python3
     rust-analyzer
     nodejs
+
+    flake.inputs.codex-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    bubblewrap
   ];
 
   programs = {

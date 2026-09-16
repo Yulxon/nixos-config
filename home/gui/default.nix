@@ -5,6 +5,7 @@
     ./kitty.nix
     ./mpv.nix
     ./nixvim.nix
+    ./rime.nix
     ./vscodium.nix
 
     flake.inputs.catppuccin.homeModules.catppuccin

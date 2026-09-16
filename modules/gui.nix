@@ -18,7 +18,6 @@
   ];
 
   virtualisation.podman.enable = true;
-  # services.linyaps.enable = true;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

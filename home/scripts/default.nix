@@ -4,14 +4,14 @@ let
   # ---------------------------------------------------------------------------
   # `up` — one-command system update.
   #
-  #   up                  flatpak / distrobox / tldr / npm / flake.lock / rime-ice
+  #   up                  flatpak / distrobox / tldr / npm / flake.lock
   #   up -r               ... then rebuild the system (nixos-rebuild switch)
-  #   up -s npm -s rime   skip steps (-s is repeatable)
+  #   up -s npm -s flake  skip steps (-s is repeatable)
   #   up -n               no desktop notification at the end
   #   up -l               list steps and exit
   #   up -h               show help
   #
-  # Env overrides (optional): UP_FLAKE_DIR, UP_FLAKE_HOST, UP_RIME_DIR
+  # Env overrides (optional): UP_FLAKE_DIR, UP_FLAKE_HOST
   #
   # Every step's output is teed into the logs:
   #   ~/.local/state/up/last.log                 most recent run
@@ -30,7 +30,6 @@ let
     # --- config ----------------------------------------------------------------
     FLAKE_DIR="''${UP_FLAKE_DIR:-$HOME/Projects/nixos-config}"
     FLAKE_HOST="''${UP_FLAKE_HOST:-asus}"
-    RIME_DIR="''${UP_RIME_DIR:-$HOME/Projects/plum}"
 
     LOG_DIR="''${XDG_STATE_HOME:-$HOME/.local/state}/up"
     mkdir -p "$LOG_DIR"
@@ -55,12 +54,12 @@ $C_BOLD up$C_RESET — one-command system update
 usage: up [options]
 
   -r        rebuild the system afterwards (nixos-rebuild switch --flake $FLAKE_DIR#$FLAKE_HOST)
-  -s STEP   skip a step (repeatable, e.g. -s npm -s rime)
+  -s STEP   skip a step (repeatable, e.g. -s npm -s flake)
   -n        no desktop notification at the end
   -l        list steps and exit
   -h        show this help
 
-steps: flatpak distrobox tldr npm flake rime [rebuild]
+steps: flatpak distrobox tldr npm flake [rebuild]
 EOF
     }
 
@@ -112,14 +111,6 @@ EOF
         echo "        $C_DIM git -C $FLAKE_DIR add flake.lock && git commit -m 'update inputs'$C_RESET"
       fi
       return "$ret"
-    }
-
-    step_rime() {
-      if [ ! -d "$RIME_DIR" ]; then
-        echo "  $C_YELLOW(plum dir not found: $RIME_DIR — skipping)$C_RESET"
-        return 0
-      fi
-      ( cd "$RIME_DIR" && ${pkgs.bash}/bin/bash rime-install iDvel/rime-ice )
     }
 
     step_rebuild() {
@@ -194,7 +185,7 @@ EOF
       esac
     done
 
-    STEPS=(flatpak distrobox tldr npm flake rime)
+    STEPS=(flatpak distrobox tldr npm flake)
     [ "$DO_REBUILD" = 1 ] && STEPS+=(rebuild)
 
     if [ "$LIST_ONLY" = 1 ]; then

@@ -18,6 +18,7 @@ in
   # `npm install -g` must not try to write into the read-only nix store.
   home.file.".npmrc".text = ''
     prefix=${npmPrefix}
+    allow-scripts=@deepseek-ai/dsh-subprocess-local,koffi,node-pty,@google/genai,protobufjs
   '';
 
   # Exposes npm-global binaries — `dsh`, and the newer npm after `up` updated it.

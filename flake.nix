@@ -23,6 +23,10 @@
       url = "github:ciscosweater/enter-the-wired";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    codex-nix = {
+      url = "github:SecBear/codex-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-unified.url = "github:srid/nixos-unified";

@@ -9,7 +9,6 @@
 # 本模块只负责 ~/.config/ibus/rime 下的“用户文件”：
 #   - default.custom.yaml     方案列表、候选页大小（继承 rime-ice 的 default.yaml）
 #   - rime_ice.custom.yaml    万象语法模型（大模型候选）+ 挂载扩展字库
-#   - rocom_mixed.dict.yaml   本地维护词库（洛克王国）
 #   - wanxiang-lts-zh-hans.gram  万象语法模型文件（约 420MB，nix store 软链接）
 #
 # 注意：rime 的 *.userdb、build/、installation.yaml、user.yaml 等运行期状态
@@ -50,16 +49,11 @@
         # 扩展字库：
         #   zhwiki  （中文维基百科） 来自 nixpkgs rime-zhwiki
         #   moegirl （萌娘百科）     来自 nixpkgs rime-moegirl
-        #   rocom_mixed（洛克王国）  本地维护（本模块内的文件）
         # zhwiki/moegirl 的 .dict.yaml 位于合并后的 rime-data 顶层，直接引用表名即可。
         import_tables/+:
           - zhwiki
           - moegirl
-          - rocom_mixed
     '';
-
-    # 洛克王国词库（本地维护，随仓库版本化）
-    ".config/ibus/rime/rocom_mixed.dict.yaml".source = ./rocom_mixed.dict.yaml;
 
     # 万象语法模型文件（约 420MB，软链接到 nix store，不占用 home 磁盘）。
     # 上游用同一个 LTS URL 原地覆盖更新（不可复现），nixpkgs 的 rime-wanxiang 包
@@ -67,7 +61,7 @@
     # 届时用 `nix-prefetch-url <url>` 拿到新 hash 更新即可（见 README.md）。
     ".config/ibus/rime/wanxiang-lts-zh-hans.gram".source = pkgs.fetchurl {
       url = "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram";
-      sha256 = "sha256-YKqCBEHCuAZmmWYulFIYviGfUVdIVjReS+opYrf/FMo=";
+      sha256 = "sha256-jxstPtKydV/dRF9qsQPv9hMFIIC2KgwEn0sWYEOhasQ=";
     };
   };
 }

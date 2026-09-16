@@ -7,9 +7,8 @@ Chumi's NixOS configuration, built with [nixos-unified](https://github.com/srid/
 
 - `hosts/asus/` — ASUS FX506HM host: hardware-configuration, nixos-hardware profile, Steam/gamescope
 - `modules/` — system-wide NixOS modules (hardware, system, proxy, gui)
-- `home/` — home-manager user config, split into `gui/`, `tui/`, `scripts/`,
-  plus `headcrab/` (SLSsteam injection) and `rime/` (Rime input method), which
-  have their own READMEs
+- `home/` — home-manager user config, split into `gui/` (including Rime),
+  `tui/`, `scripts/`, and `headcrab/` (SLSsteam injection)
 - `shared/` — constants shared between module systems; `shared/proxy.nix` is the
   single source of truth for the local proxy endpoint (used by `modules/proxy.nix`
   and `home/gui/gnome.nix`)
@@ -31,9 +30,9 @@ nix run .#update        # update nixpkgs + home-manager inputs
 Day-to-day updates go through the `up` script installed by `home/scripts/default.nix`:
 
 ```sh
-up                      # flatpak / distrobox / tldr / npm / flake.lock / rime-ice
+up                      # flatpak / distrobox / tldr / npm / flake.lock
 up -r                   # ... then nixos-rebuild switch
-up -s npm -s rime       # skip steps
+up -s npm -s flake      # skip steps
 up -l                   # list steps
 ```
 
