@@ -18,6 +18,12 @@
       ];
 
       userSettings = {
+        "editor.formatOnSave" = true;
+        "editor.fontFamily" = "'Iosevka', 'Droid Sans Mono', 'monospace', monospace";
+        "editor.fontSize" = 14;
+        "terminal.integrated.fontFamily" = "Iosevka";
+        "terminal.integrated.initialHint" = false;
+
         "workbench.colorTheme" = "Catppuccin Mocha";
         "workbench.iconTheme" = "catppuccin-mocha";
 
@@ -29,9 +35,6 @@
 
         "python.languageServer" = "Pylance";
 
-        "editor.formatOnSave" = true;
-        "editor.fontSize" = 14;
-        "terminal.integrated.initialHint" = false;
       };
     };
   };

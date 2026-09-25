@@ -1,19 +1,17 @@
 # Rime（中州韵）用户配置 —— 由 home-manager 声明式托管。
 #
-# 共享数据（rime-ice 方案/词库、zhwiki、moegirl）由系统层 modules/gui.nix 提供：
-#   i18n.inputMethod.ibus.engines = [
-#     (rime.override { rimeDataPkgs = [ rime-ice rime-zhwiki rime-moegirl ]; })
-#   ]
-# 这里的 rimeDataPkgs 更新会随 `nix flake update nixpkgs` 一起进行。
+# 共享数据（rime-ice 方案/词库、zhwiki、moegirl）由系统层 modules/gui.nix 提供。
+# 雾凇词库通过 `nix flake update rime-ice` 更新；其余数据包随 nixpkgs 更新。
 #
 # 本模块只负责 ~/.config/ibus/rime 下的“用户文件”：
 #   - default.custom.yaml     方案列表、候选页大小（继承 rime-ice 的 default.yaml）
-#   - rime_ice.custom.yaml    万象语法模型（大模型候选）+ 挂载扩展字库
+#   - rime_ice.custom.yaml    万象语法模型（大模型候选）
+#   - rime_ice.dict.yaml      雾凇词典 + 大字表、扩展词库
 #   - wanxiang-lts-zh-hans.gram  万象语法模型文件（约 420MB，nix store 软链接）
 #
 # 注意：rime 的 *.userdb、build/、installation.yaml、user.yaml 等运行期状态
 # 不受托管，保留在用户目录中。
-{ pkgs, ... }:
+{ pkgs, flake, ... }:
 {
   home.file = {
     # 方案列表 + 候选页大小。
@@ -29,7 +27,7 @@
           page_size: 6  # 候选词个数
     '';
 
-    # 万象语法模型（大模型候选）+ 挂载扩展字库。
+    # 万象语法模型（大模型候选）。
     # 语法模型参数与上游 rime-ice others/recipes/grammar.recipe.yaml 一致。
     ".config/ibus/rime/rime_ice.custom.yaml".text = ''
       # 万象语法模型（LLM 候选）：https://github.com/amzxyz/RIME-LMDG/releases/tag/LTS
@@ -46,13 +44,19 @@
         translator/contextual_suggestions: false
         translator/max_homophones: 8
 
-        # 扩展字库：
-        #   zhwiki  （中文维基百科） 来自 nixpkgs rime-zhwiki
-        #   moegirl （萌娘百科）     来自 nixpkgs rime-moegirl
-        # zhwiki/moegirl 的 .dict.yaml 位于合并后的 rime-data 顶层，直接引用表名即可。
-        import_tables/+:
-          - zhwiki
-          - moegirl
+    '';
+
+    # import_tables 必须写在词典文件中，不能通过 schema 的 custom.yaml 补丁添加。
+    # 基于与系统层相同的雾凇源码生成，保留上游词条和后续更新。
+    ".config/ibus/rime/rime_ice.dict.yaml".source = pkgs.runCommandLocal "rime-ice-dict.yaml" { } ''
+      awk '
+        /^  # - cn_dicts\/41448/ { sub(/^  # -/, "  -") }
+        { print }
+        /^  - cn_dicts\/others/ {
+          print "  - zhwiki"
+          print "  - moegirl"
+        }
+      ' ${flake.inputs.rime-ice}/rime_ice.dict.yaml > "$out"
     '';
 
     # 万象语法模型文件（约 420MB，软链接到 nix store，不占用 home 磁盘）。
@@ -61,7 +65,7 @@
     # 届时用 `nix-prefetch-url <url>` 拿到新 hash 更新即可（见 README.md）。
     ".config/ibus/rime/wanxiang-lts-zh-hans.gram".source = pkgs.fetchurl {
       url = "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram";
-      sha256 = "sha256-jxstPtKydV/dRF9qsQPv9hMFIIC2KgwEn0sWYEOhasQ=";
+      sha256 = "sha256-aZ0EWhvpJqOf0M2j9w4VMyRUElnbOQ1wtb8BF3QuRFE=";
     };
   };
 }

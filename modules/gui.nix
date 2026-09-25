@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, flake, ... }:
 {
   services = {
     displayManager.gdm.enable = true;
@@ -17,8 +17,6 @@
     gnome-tour
   ];
 
-  virtualisation.podman.enable = true;
-
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocales = [ "zh_CN.UTF-8/UTF-8" ];
@@ -32,7 +30,10 @@
       ibus.engines = with pkgs.ibus-engines; [
         (rime.override {
           rimeDataPkgs = with pkgs; [
-            rime-ice
+            (rime-ice.overrideAttrs {
+              version = "unstable-${builtins.substring 0 8 flake.inputs.rime-ice.rev}";
+              src = flake.inputs.rime-ice;
+            })
             rime-zhwiki
             rime-moegirl
           ];
@@ -45,33 +46,6 @@
     fontDir.enable = true;
     packages = with pkgs; [
       noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-color-emoji
-      twemoji-color-font
-      nerd-fonts.symbols-only
-      iosevka-bin
     ];
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        sansSerif = [
-          "Noto Sans CJK SC"
-          "Noto Sans"
-          "Twemoji"
-        ];
-        serif = [
-          "Noto Serif CJK SC"
-          "Noto Serif"
-          "Twemoji"
-        ];
-        monospace = [
-          "Noto Sans Mono CJK SC"
-          "Symbols Nerd Font"
-          "Twemoji"
-        ];
-        emoji = [ "Twemoji" ];
-      };
-    };
   };
 }

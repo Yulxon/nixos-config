@@ -1,7 +1,5 @@
 { ... }:
 {
-  networking.hostName = "nixos";
-
   time.timeZone = "Asia/Shanghai";
 
   system.stateVersion = "26.05";

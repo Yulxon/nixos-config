@@ -5,7 +5,7 @@
 
     font = {
       name = "Iosevka";
-      # size = 10.5;
+      size = 12;
     };
 
     settings = {

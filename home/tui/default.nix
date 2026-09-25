@@ -1,17 +1,12 @@
 { flake, pkgs, ... }:
 {
   imports = [
-    ./dsh.nix
     ./git.nix
     ./nix.nix
     ./shell.nix
   ];
 
   home.packages = with pkgs; [
-    distrobox
-
-    source-code-pro
-
     gnumake
     clang
     clang-tools
@@ -21,7 +16,7 @@
     rust-analyzer
     nodejs
 
-    flake.inputs.codex-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    flake.inputs.codex-nix.packages.${pkgs.stdenv.system}.default
     bubblewrap
   ];
 

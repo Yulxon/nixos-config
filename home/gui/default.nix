@@ -1,8 +1,10 @@
-{ flake, pkgs, ... }:
+{ flake, ... }:
 {
   imports = [
+    ./fontconfig.nix
     ./gnome.nix
     ./kitty.nix
+    ./librewolf.nix
     ./mpv.nix
     ./nixvim.nix
     ./rime.nix
@@ -11,15 +13,9 @@
     flake.inputs.catppuccin.homeModules.catppuccin
   ];
 
-  home.packages = with pkgs; [
-    pince # Gaming
-  ];
-
   catppuccin = {
     fish.enable = true;
     starship.enable = true;
     kitty.enable = true;
   };
-
-  programs.librewolf.enable = true;
 }

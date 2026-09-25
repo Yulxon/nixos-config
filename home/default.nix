@@ -3,7 +3,6 @@
 {
   imports = [
     ./gui
-    ./headcrab
     ./scripts
     ./tui
   ];

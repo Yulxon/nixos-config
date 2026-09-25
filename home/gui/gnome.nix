@@ -1,8 +1,7 @@
 { pkgs, lib, ... }:
 
 let
-  # Proxy endpoint shared with modules/proxy.nix (single source of truth).
-  proxy = import ../../shared/proxy.nix;
+  proxy = import ../../config/proxy.nix;
 in
 {
   home.packages = with pkgs.gnomeExtensions; [
@@ -13,9 +12,9 @@ in
     user-themes
   ];
 
-  home.sessionVariables = {
-    GSK_RENDERER = "ngl";
-  };
+  # home.sessionVariables = {
+  #   GSK_RENDERER = "ngl";
+  # };
 
   dconf.settings = {
     "org/gnome/software" = {

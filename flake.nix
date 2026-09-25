@@ -15,47 +15,45 @@
     };
     nixvim.url = "github:nix-community/nixvim/nixos-26.05";
     catppuccin.url = "github:catppuccin/nix/release-26.05";
-    sls-steam = {
-      url = "github:AceSLS/SLSsteam";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    enter-the-wired = {
-      url = "github:ciscosweater/enter-the-wired";
-      inputs.nixpkgs.follows = "nixpkgs";
+    rime-ice = {
+      url = "github:iDvel/rime-ice";
+      flake = false;
     };
     codex-nix = {
       url = "github:SecBear/codex-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    nixos-unified.url = "github:srid/nixos-unified";
   };
 
   outputs =
-    inputs@{ self, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-
-      imports = [ inputs.nixos-unified.flakeModules.default ];
-
-      # Only update the inputs we actually use
-      perSystem = { ... }: {
-        nixos-unified.primary-inputs = [
-          "nixpkgs"
-          "home-manager"
-        ];
-      };
-
-      flake.nixosConfigurations.asus = self.nixos-unified.lib.mkLinuxSystem { home-manager = true; } {
-        nixpkgs.hostPlatform = "x86_64-linux";
-        imports = [
-          ./hosts/asus
-          ./modules
-          {
-            home-manager.users.chumi.imports = [ ./home ];
-          }
-        ];
+    inputs@{ nixpkgs, home-manager, ... }:
+    let
+      flake = { inherit inputs; };
+      mkHost =
+        host:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit flake; };
+          modules = [
+            host
+            ./modules
+            home-manager.nixosModules.home-manager
+            {
+              nixpkgs.hostPlatform = "x86_64-linux";
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit flake; };
+                users.chumi.imports = [ ./home ];
+              };
+            }
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        asus = mkHost ./hosts/asus;
+        redmi = mkHost ./hosts/redmi;
       };
     };
 }
