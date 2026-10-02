@@ -1,8 +1,8 @@
-{ flake, ... }:
+{ inputs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
-    flake.inputs.nixos-hardware.nixosModules.asus-fx506hm
+    inputs.nixos-hardware.nixosModules.asus-fx506hm
   ];
 
   hardware.asus.battery = {

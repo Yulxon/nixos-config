@@ -94,15 +94,14 @@ let
       {
         name = "DNS-Proxy";
         type = "select";
-        hidden = true;
+        hidden = false;
         include-all = true;
-        default-selected = "s";
+        proxies = [ "DIRECT" ];
       }
       {
         name = "Proxy";
         type = "select";
         include-all = true;
-        default-selected = "s";
         proxies = [ "DIRECT" ];
       }
     ];
@@ -114,11 +113,7 @@ let
       "MATCH,Proxy"
     ];
   };
-  mihomoConfigFile = "/run/mihomo-config.yaml";
-  generateConfig = pkgs.writeShellScript "generate-mihomo-config" ''
-    set -euo pipefail
-    ${config.system.activationScripts.mihomoConfig.text}
-  '';
+
 in
 {
   networking.proxy.default = "http://${proxy.host}:${toString proxy.port}/";
@@ -128,49 +123,17 @@ in
     enable = true;
     tunMode = true;
     webui = pkgs.metacubexd;
-    configFile = mihomoConfigFile;
+    configFile = config.sops.templates."mihomo-config.yaml".path;
   };
 
-  systemd.services.mihomo.restartTriggers = [ mihomoPublicConfig ];
-
-  # Keep subscription URLs and proxy passwords out of the world-readable Nix store.
-  # Generate the complete config before systemd loads it as a private credential.
-  system.activationScripts.mihomoConfig = {
-    deps = [ "users" ];
-    text = ''
-      configDir=/home/chumi/.config/mihomo
-      secretFile="$configDir/proxies.yaml"
-      ${pkgs.coreutils}/bin/install -d -m 700 -o chumi -g users "$configDir"
-      if [ ! -f "$secretFile" ]; then
-        echo "mihomo: missing $secretFile" >&2
-        exit 1
-      fi
-      ${pkgs.coreutils}/bin/chmod 600 "$secretFile"
-
-      configStage="$(${pkgs.coreutils}/bin/mktemp /run/.mihomo-config.XXXXXX)"
-      ${pkgs.coreutils}/bin/cat ${mihomoPublicConfig} > "$configStage"
-      ${pkgs.coreutils}/bin/printf '\n' >> "$configStage"
-      ${pkgs.coreutils}/bin/cat "$secretFile" >> "$configStage"
-      ${pkgs.coreutils}/bin/chmod 600 "$configStage"
-      if ${pkgs.diffutils}/bin/cmp -s "$configStage" ${mihomoConfigFile}; then
-        ${pkgs.coreutils}/bin/rm -f "$configStage"
-      else
-        ${pkgs.coreutils}/bin/mv -f "$configStage" ${mihomoConfigFile}
-      fi
-    '';
-  };
-
-  # LoadCredential captures the file on service start, so refresh and restart it.
-  systemd.paths.mihomo-config-refresh = {
-    wantedBy = [ "multi-user.target" ];
-    pathConfig.PathChanged = "/home/chumi/.config/mihomo/proxies.yaml";
-  };
-  systemd.services.mihomo-config-refresh = {
-    description = "Refresh mihomo configuration after private proxy changes";
-    serviceConfig.Type = "oneshot";
-    script = ''
-      ${generateConfig}
-      ${pkgs.systemd}/bin/systemctl try-restart mihomo.service
+  # Only the public settings and a placeholder enter the Nix store.
+  # sops-nix renders the private fragment before mihomo starts.
+  sops.templates."mihomo-config.yaml" = {
+    mode = "0600";
+    restartUnits = [ "mihomo.service" ];
+    file = pkgs.runCommand "mihomo-config-template.yaml" { } ''
+      cat ${mihomoPublicConfig} > "$out"
+      printf '\n%s\n' '${config.sops.placeholder.mihomo-proxies}' >> "$out"
     '';
   };
 }

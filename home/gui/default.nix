@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./fontconfig.nix
@@ -9,13 +9,18 @@
     ./nixvim.nix
     ./rime.nix
     ./vscodium.nix
-
-    flake.inputs.catppuccin.homeModules.catppuccin
   ];
 
-  catppuccin = {
-    fish.enable = true;
-    starship.enable = true;
-    kitty.enable = true;
-  };
+  home.packages = with pkgs; [
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-color-emoji
+    twemoji-color-font
+    nerd-fonts.symbols-only
+    source-code-pro
+    iosevka-bin
+
+    lxgw-wenkai
+  ];
+
 }

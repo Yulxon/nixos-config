@@ -1,12 +1,10 @@
 {
-  config,
   pkgs,
   osConfig,
   ...
 }:
 
 let
-  npmPrefix = "${config.home.homeDirectory}/.local/npm";
   up = pkgs.writeShellScriptBin "up" ''
     set -euo pipefail
 
@@ -41,9 +39,6 @@ let
     echo "== tldr =="
     ${pkgs.tealdeer}/bin/tldr --update
 
-    echo "== dsh =="
-    ${pkgs.nodejs}/bin/npm install -g --no-fund --no-audit @deepseek-ai/dsh@latest
-
     echo "== flake =="
     ${pkgs.nix}/bin/nix flake update nixpkgs home-manager --flake "$flake_dir"
 
@@ -58,11 +53,5 @@ let
   '';
 in
 {
-  home.file.".npmrc".text = ''
-    prefix=${npmPrefix}
-    allow-scripts=@deepseek-ai/dsh-subprocess-local,koffi,node-pty,@google/genai,protobufjs
-  '';
-
-  home.sessionPath = [ "${npmPrefix}/bin" ];
   home.packages = [ up ];
 }

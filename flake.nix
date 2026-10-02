@@ -14,26 +14,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim.url = "github:nix-community/nixvim/nixos-26.05";
-    catppuccin.url = "github:catppuccin/nix/release-26.05";
-    rime-ice = {
-      url = "github:iDvel/rime-ice";
-      flake = false;
-    };
-    codex-nix = {
-      url = "github:SecBear/codex-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs =
     inputs@{ nixpkgs, home-manager, ... }:
     let
-      flake = { inherit inputs; };
       mkHost =
         host:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit flake; };
+          specialArgs = { inherit inputs; };
           modules = [
             host
             ./modules
@@ -43,7 +37,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = { inherit flake; };
+                extraSpecialArgs = { inherit inputs; };
                 users.chumi.imports = [ ./home ];
               };
             }

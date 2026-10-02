@@ -1,4 +1,4 @@
-{ pkgs, flake, ... }:
+{ pkgs, ... }:
 {
   services = {
     displayManager.gdm.enable = true;
@@ -30,10 +30,7 @@
       ibus.engines = with pkgs.ibus-engines; [
         (rime.override {
           rimeDataPkgs = with pkgs; [
-            (rime-ice.overrideAttrs {
-              version = "unstable-${builtins.substring 0 8 flake.inputs.rime-ice.rev}";
-              src = flake.inputs.rime-ice;
-            })
+            rime-ice
             rime-zhwiki
             rime-moegirl
           ];

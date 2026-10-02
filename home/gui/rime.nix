@@ -1,7 +1,7 @@
 # Rime（中州韵）用户配置 —— 由 home-manager 声明式托管。
 #
 # 共享数据（rime-ice 方案/词库、zhwiki、moegirl）由系统层 modules/gui.nix 提供。
-# 雾凇词库通过 `nix flake update rime-ice` 更新；其余数据包随 nixpkgs 更新。
+# 雾凇词库和其余数据包均随 nixpkgs 更新。
 #
 # 本模块只负责 ~/.config/ibus/rime 下的“用户文件”：
 #   - default.custom.yaml     方案列表、候选页大小（继承 rime-ice 的 default.yaml）
@@ -11,7 +11,7 @@
 #
 # 注意：rime 的 *.userdb、build/、installation.yaml、user.yaml 等运行期状态
 # 不受托管，保留在用户目录中。
-{ pkgs, flake, ... }:
+{ pkgs, ... }:
 {
   home.file = {
     # 方案列表 + 候选页大小。
@@ -56,7 +56,7 @@
           print "  - zhwiki"
           print "  - moegirl"
         }
-      ' ${flake.inputs.rime-ice}/rime_ice.dict.yaml > "$out"
+      ' ${pkgs.rime-ice.src}/rime_ice.dict.yaml > "$out"
     '';
 
     # 万象语法模型文件（约 420MB，软链接到 nix store，不占用 home 磁盘）。

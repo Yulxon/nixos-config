@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
-
+{ lib, ... }:
 let
   languageFonts = [
     {
@@ -58,18 +53,6 @@ let
     '';
 in
 {
-  home.packages = with pkgs; [
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-color-emoji
-    twemoji-color-font
-    nerd-fonts.symbols-only
-    source-code-pro
-    iosevka-bin
-
-    lxgw-wenkai
-  ];
-
   xdg.dataFile."flatpak/overrides/global".text = ''
     [Context]
     filesystems=/nix/store:ro;xdg-config/fontconfig:ro;

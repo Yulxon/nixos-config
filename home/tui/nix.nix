@@ -1,7 +1,7 @@
-{ flake, ... }:
+{ inputs, ... }:
 {
   imports = [
-    flake.inputs.nix-index-database.homeModules.default
+    inputs.nix-index-database.homeModules.default
   ];
 
   programs = {
