@@ -1,8 +1,4 @@
 { pkgs, lib, ... }:
-
-let
-  proxy = import ../../config/proxy.nix;
-in
 {
   home.packages = with pkgs.gnomeExtensions; [
     alphabetical-app-grid
@@ -12,33 +8,16 @@ in
     user-themes
   ];
 
-  # home.sessionVariables = {
-  #   GSK_RENDERER = "ngl";
-  # };
-
   dconf.settings = {
     "org/gnome/software" = {
       first-run = false;
     };
+
     "org/gnome/settings-daemon/plugins/housekeeping" = {
       donation-reminder-enabled = false;
     };
 
-    "system/proxy" = {
-      mode = "manual";
-    };
-    "system/proxy/http" = {
-      inherit (proxy) host port;
-    };
-    "system/proxy/https" = {
-      inherit (proxy) host port;
-    };
-    "system/proxy/socks" = {
-      inherit (proxy) host port;
-    };
-
     "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
       accent-color = "teal";
     };
 
@@ -75,8 +54,8 @@ in
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>t";
-      command = "kitty";
-      name = "kitty";
+      command = "kgx";
+      name = "terminal";
     };
 
     "org/gnome/desktop/wm/keybindings" = {
@@ -90,12 +69,9 @@ in
       ];
     };
 
-    # "org/gnome/shell/app-switcher" = {
-    #   current-workspace-only = true;
-    # };
-
     "ca/desrt/dconf-editor" = {
       show-warning = false;
     };
   };
+
 }

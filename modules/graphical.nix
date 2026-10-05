@@ -7,6 +7,10 @@
   };
 
   environment.gnome.excludePackages = with pkgs; [
+    epiphany
+    # gnome-console
+    # decibels
+    # showtime
     gnome-contacts
     gnome-maps
     gnome-music

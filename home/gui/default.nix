@@ -3,10 +3,6 @@
   imports = [
     ./fontconfig.nix
     ./gnome.nix
-    ./kitty.nix
-    ./librewolf.nix
-    ./mpv.nix
-    ./nixvim.nix
     ./rime.nix
     ./vscodium.nix
   ];
@@ -15,12 +11,15 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
-    twemoji-color-font
+    # twemoji-color-font
     nerd-fonts.symbols-only
-    source-code-pro
+    # source-code-pro
     iosevka-bin
 
-    lxgw-wenkai
+    # lxgw-wenkai
   ];
 
+  programs = {
+    librewolf.enable = true;
+  };
 }

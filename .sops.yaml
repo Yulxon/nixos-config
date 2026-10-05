@@ -1,7 +1,0 @@
-keys:
-  - &chumi age1pwus40m3h7ct72t47ke2f6y7yaytmyq7f32c8gx9smnwdcuw4v6sgzlfma
-creation_rules:
-  - path_regex: secret/.*\.json$
-    key_groups:
-      - age:
-          - *chumi

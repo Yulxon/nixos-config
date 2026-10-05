@@ -64,20 +64,20 @@ in
       sansSerif = [
         "Noto Sans"
         "Noto Sans CJK SC"
-        "Twemoji"
+        "Noto Color Emoji"
       ];
       serif = [
         "Noto Serif"
         "Noto Serif CJK SC"
-        "Twemoji"
+        "Noto Color Emoji"
       ];
       monospace = [
         "Noto Sans Mono"
         "Noto Sans Mono CJK SC"
         "Symbols Nerd Font"
-        "Twemoji"
+        "Noto Color Emoji"
       ];
-      emoji = [ "Twemoji" ];
+      emoji = [ "Noto Color Emoji" ];
     };
     configFile.noto-cjk = {
       enable = true;

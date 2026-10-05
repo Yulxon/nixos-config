@@ -1,12 +1,12 @@
 { ... }:
 {
   imports = [
-    ./hardware.nix
     ./system.nix
-    ./proxy.nix
-    ./secrets.nix
-    ./gui.nix
+    ./graphical.nix
   ];
+
+  time.timeZone = "Asia/Shanghai";
+  system.stateVersion = "26.05";
 
   nix = {
     optimise.automatic = true;
@@ -28,9 +28,29 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 14d";
+      options = "--delete-older-than 7d";
     };
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  fileSystems."/" = {
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
+  };
+  fileSystems."/home" = {
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
+  };
+  fileSystems."/nix" = {
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
+  };
+
 }

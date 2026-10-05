@@ -11,10 +11,6 @@
         catppuccin.catppuccin-vsc-icons
 
         jnoortheen.nix-ide
-        ms-vscode.cpptools
-        ms-python.python
-        ms-python.vscode-pylance
-        rust-lang.rust-analyzer
       ];
 
       userSettings = {
@@ -30,10 +26,6 @@
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
         "nix.formatterPath" = "nixfmt";
-
-        "rust-analyzer.server.path" = "rust-analyzer";
-
-        "python.languageServer" = "Pylance";
 
       };
     };
