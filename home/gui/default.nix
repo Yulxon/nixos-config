@@ -4,7 +4,7 @@
     ./fontconfig.nix
     ./gnome.nix
     ./rime.nix
-    ./vscodium.nix
+    ./wallpaper.nix
   ];
 
   home.packages = with pkgs; [
@@ -18,8 +18,4 @@
 
     # lxgw-wenkai
   ];
-
-  programs = {
-    librewolf.enable = true;
-  };
 }

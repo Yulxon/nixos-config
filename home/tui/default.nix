@@ -14,6 +14,7 @@ in
     (with pkgs; [
       nixd
       nixfmt
+
       bubblewrap # codex need
     ])
     ++ (with llm; [
@@ -38,7 +39,7 @@ in
     yt-dlp = {
       enable = true;
       extraConfig = ''
-        --cookies-from-browser firefox:~/.config/librewolf/librewolf/
+        --cookies-from-browser chrome:~/.var/app/com.google.Chrome/config/google-chrome/Default
       '';
     };
   };

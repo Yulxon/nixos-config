@@ -10,6 +10,8 @@
 
   zramSwap.enable = true;
 
+  programs.nix-ld.enable = true;
+
   security.rtkit.enable = true; # for Pipewire, use the realtime scheduler
   services = {
     pipewire = {
