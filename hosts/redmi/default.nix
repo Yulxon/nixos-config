@@ -6,4 +6,6 @@
   ];
 
   networking.hostName = "redmi";
+  # Compatibility version: keep the established value across NixOS upgrades.
+  system.stateVersion = "26.05";
 }

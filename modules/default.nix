@@ -6,7 +6,6 @@
   ];
 
   time.timeZone = "Asia/Shanghai";
-  system.stateVersion = "26.05";
 
   nix = {
     optimise.automatic = true;
