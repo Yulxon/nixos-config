@@ -31,6 +31,13 @@ use the updated environment. The NixVim module and flake input have been removed
 `home/tui/default.nix` keeps `nixd` and `nixfmt` on the user's PATH for Helix
 and command-line use.
 
+## Fonts
+
+`home/gui/default.nix` installs Maple Mono NF CN and Symbols Nerd Font.
+NixOS's default font packages provide Noto CJK and emoji fonts; they do not
+need duplicate Home Manager package declarations. Console font preferences
+and wallpaper are managed locally.
+
 ## Dynamic linking compatibility
 
 `modules/system.nix` enables `nix-ld` on both hosts so unpatched Linux ELF

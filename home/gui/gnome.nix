@@ -15,12 +15,6 @@
   };
 
   dconf.settings = {
-    "org/gnome/Console" = {
-      theme = "auto";
-      use-system-font = false;
-      custom-font = "Iosevka 12";
-    };
-
     # IBus 候选框使用 Shell 主题；固定的第三方样式会覆盖原生明暗切换。
     "org/gnome/shell/extensions/user-theme" = {
       name = "";
