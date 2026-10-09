@@ -1,0 +1,45 @@
+name: Nix configuration checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+
+      - name: Parse Nix files
+        run: |
+          while IFS= read -r file; do
+            nix-instantiate --parse "$file" >/dev/null
+          done < <(git ls-files '*.nix')
+
+      - name: Evaluate both host configurations
+        run: nix flake check --no-build path:.
+
+      - name: Test Rime dictionary conversion
+        run: |
+          cat > "$RUNNER_TEMP/rime-test.yaml" <<'EOF'
+          name: rime_ice
+          import_tables:
+            # - cn_dicts/41448
+            - cn_dicts/base
+            - cn_dicts/others
+          EOF
+          awk -f home/gui/rime-dict.awk "$RUNNER_TEMP/rime-test.yaml" > "$RUNNER_TEMP/rime-generated.yaml"
+          grep -qx '  - cn_dicts/41448' "$RUNNER_TEMP/rime-generated.yaml"
+          grep -qx '  - zhwiki' "$RUNNER_TEMP/rime-generated.yaml"
+          grep -qx '  - moegirl' "$RUNNER_TEMP/rime-generated.yaml"
+          if printf 'import_tables:\n  - cn_dicts/base\n' | awk -f home/gui/rime-dict.awk >/dev/null 2>&1; then
+            echo 'Rime conversion must fail if upstream anchors are missing'
+            exit 1
+          fi

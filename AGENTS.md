@@ -15,8 +15,9 @@ This repository is Chumi's personal NixOS flake. Keep changes focused on the req
 - For every change, consider whether the implementation is the simplest, needs the fewest dependencies, and is easy to understand. Prefer existing native options and direct configuration; add packages, scripts, or abstractions only when they provide a clear benefit.
 - For substantial changes, consider updating the relevant Markdown documentation. Keep it concise and prioritize what readers need to use and maintain the configuration: explain important behavior and trade-offs, briefly describe secondary details, and avoid repeating implementation code.
 - Follow nearby Nix formatting and use `nixfmt` for touched Nix files. Keep program settings in their own module when one exists.
+- Keep `system.stateVersion` host-specific and preserve existing compatibility versions; never bump `system.stateVersion` or `home.stateVersion` just to match the nixpkgs release.
 - Keep `flake.lock` changes intentional. Use `nix flake update nixpkgs home-manager` to update only the primary inputs; other inputs remain pinned unless their update is part of the task.
-- `home/gui/rime.nix` manages selected Rime user files, while the Rime engine and data packages come from `modules/graphical.nix`. Do not replace Rime's runtime databases or generated files with Home Manager links.
+- `home/gui/rime.nix` manages selected Rime user files, while the Rime engine and data packages come from `modules/graphical.nix`. Do not replace Rime's runtime databases or generated files with Home Manager links. Keep `home/gui/rime-dict.awk` in sync with upstream dictionary anchors; it must fail if the expected layout changes.
 - `home/gui/gnome.nix` uses `programs.gnome-shell.extensions` to install and enable Shell extensions together; do not duplicate them in `home.packages` or `enabled-extensions`. Keep the User Themes name empty and Light Style enabled for native light/dark switching, including the IBus/Rime candidate popup.
 - Preserve automatic appearance settings: Helix's `system` theme inherits terminal default colors and the ANSI palette. Helix's appearance depends on its terminal rather than direct GNOME settings.
 - `home/gui/default.nix` installs Maple Mono NF CN and Symbols Nerd Font. Noto CJK and emoji fonts come from NixOS's default font packages. GNOME Console's font and wallpaper are managed locally; Helix inherits its terminal's font.
@@ -27,6 +28,6 @@ This repository is Chumi's personal NixOS flake. Keep changes focused on the req
 ## Validation
 
 - For a small Nix edit, run `nix-instantiate --parse <changed-file>` and evaluate the affected option or host when practical.
-- For broader changes, run `nix flake check --no-build path:.` and inspect both host configurations if shared modules changed. The explicit `path:.` form includes newly created files before they are tracked by Git.
+- For broader changes, run `nix flake check --no-build path:.` and inspect both host configurations if shared modules changed. The CI workflow evaluates both hosts but does not replace runtime validation. The explicit `path:.` form includes newly created files before they are tracked by Git.
 - For shell edits, run `bash -n` on touched scripts.
 - Run `git diff --check` and review the final diff. A successful evaluation does not imply that runtime services or GUI behavior were tested.

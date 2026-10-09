@@ -62,3 +62,34 @@ home directory.
 The Wanxiang model in `home/gui/rime.nix` uses a fixed download hash. If its
 upstream LTS file changes, obtain the new hash with `nix-prefetch-url` for the
 URL declared there and update the module before rebuilding.
+
+## Host compatibility versions
+
+`system.stateVersion` is kept separately in each host's `default.nix`, and
+`home.stateVersion` is in `home/default.nix`. These are compatibility
+settings, **not** release selectors: verify their historically correct values
+before migrating a machine, and do not bump them during routine upgrades.
+
+## Machine-local Mihomo configuration
+
+The system service reads `/home/chumi/.config/mihomo/config.yaml` at runtime.
+This file is intentionally not committed or copied into the Nix store because
+it may contain proxy credentials and private endpoints. Before activating on
+a new host, provision the file with suitable permissions; a successful Nix
+evaluation does not prove that the service can read it.
+
+After switching, validate the running service and inspect logs if needed:
+
+```sh
+sudo systemctl status mihomo
+sudo journalctl -u mihomo -b --no-pager -n 100
+```
+
+## Validation
+
+A GitHub Actions workflow checks Nix syntax and evaluates both NixOS hosts
+without building their system closures. It also tests the Rime dictionary
+transformation against sample input and checks that an unexpected upstream
+layout fails explicitly. For a real deployment, also test the affected GUI
+applications and services on the target machine; evaluation does not establish
+runtime correctness.

@@ -1,6 +1,6 @@
 # Rime（中州韵）用户配置 —— 由 home-manager 声明式托管。
 #
-# 共享数据（rime-ice 方案/词库、zhwiki、moegirl）由系统层 modules/gui.nix 提供。
+# 共享数据（rime-ice 方案/词库、zhwiki、moegirl）由系统层 modules/graphical.nix 提供。
 # 雾凇词库和其余数据包均随 nixpkgs 更新。
 #
 # 本模块只负责 ~/.config/ibus/rime 下的“用户文件”：
@@ -47,16 +47,9 @@
     '';
 
     # import_tables 必须写在词典文件中，不能通过 schema 的 custom.yaml 补丁添加。
-    # 基于与系统层相同的雾凇源码生成，保留上游词条和后续更新。
+    # 基于与系统层相同的雾凇源码生成；若上游词典结构变化则构建失败。
     ".config/ibus/rime/rime_ice.dict.yaml".source = pkgs.runCommandLocal "rime-ice-dict.yaml" { } ''
-      awk '
-        /^  # - cn_dicts\/41448/ { sub(/^  # -/, "  -") }
-        { print }
-        /^  - cn_dicts\/others/ {
-          print "  - zhwiki"
-          print "  - moegirl"
-        }
-      ' ${pkgs.rime-ice.src}/rime_ice.dict.yaml > "$out"
+      awk -f ${./rime-dict.awk} ${pkgs.rime-ice.src}/rime_ice.dict.yaml > "$out"
     '';
 
     # 万象语法模型文件（约 420MB，软链接到 nix store，不占用 home 磁盘）。
