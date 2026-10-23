@@ -1,16 +1,6 @@
 { pkgs, ... }:
 {
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      systemd-boot.configurationLimit = 6;
-      efi.canTouchEfiVariables = true;
-    };
-  };
-
-  zramSwap.enable = true;
-
-  programs.nix-ld.enable = true;
+  time.timeZone = "Asia/Shanghai";
 
   security.rtkit.enable = true; # for Pipewire, use the realtime scheduler
   services = {
@@ -23,7 +13,7 @@
 
     mihomo = {
       enable = true;
-      tunMode = true;
+      tunMode = false;
       webui = pkgs.metacubexd;
       configFile = "/home/chumi/.config/mihomo/config.yaml";
     };
@@ -36,5 +26,8 @@
       "wheel"
     ];
   };
+  networking.proxy.default = "http://127.0.0.1:7890";
+  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  programs.nix-ld.enable = true;
 }

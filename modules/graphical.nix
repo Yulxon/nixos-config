@@ -3,23 +3,10 @@
   services = {
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
+    # gnome.core-apps.enable = false;
+
     flatpak.enable = true;
   };
-
-  environment.gnome.excludePackages = with pkgs; [
-    epiphany
-    # gnome-console
-    # decibels
-    # showtime
-    gnome-contacts
-    gnome-maps
-    gnome-music
-    gnome-connections
-    simple-scan
-    snapshot
-    yelp
-    gnome-tour
-  ];
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -42,4 +29,15 @@
       ];
     };
   };
+
+  fonts.packages = with pkgs; [
+    noto-fonts
+    maple-mono.NF-CN
+    nerd-fonts.symbols-only
+    iosevka-bin
+    lxgw-wenkai
+  ];
+
+  # Controller device permissions and uinput support for Steam Input.
+  hardware.steam-hardware.enable = true;
 }

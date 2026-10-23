@@ -58,7 +58,7 @@
     # 届时用 `nix-prefetch-url <url>` 拿到新 hash 更新即可（见 README.md）。
     ".config/ibus/rime/wanxiang-lts-zh-hans.gram".source = pkgs.fetchurl {
       url = "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram";
-      sha256 = "sha256-aZ0EWhvpJqOf0M2j9w4VMyRUElnbOQ1wtb8BF3QuRFE=";
+      sha256 = "sha256-YWnzXUiqEBjm7/0Wy2rgfzB5ZM/+XYx5uX+vIWRpO+w=";
     };
   };
 }

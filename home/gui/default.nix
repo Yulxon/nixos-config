@@ -1,16 +1,10 @@
-{ pkgs, ... }:
 {
   imports = [
     ./fontconfig.nix
     ./gnome.nix
+    ./kitty.nix
+    ./librewolf.nix
+    ./mpv.nix
     ./rime.nix
-  ];
-
-  home.packages = with pkgs; [
-    nerd-fonts.symbols-only
-    # iosevka-bin
-
-    # lxgw-wenkai
-    maple-mono.NF-CN
   ];
 }

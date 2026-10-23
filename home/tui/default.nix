@@ -14,18 +14,12 @@ in
     (with pkgs; [
       nixd
       nixfmt
+      nodejs # OpenAI Developers plugin's local MCP server
 
       bubblewrap # codex need
     ])
     ++ (with llm; [
-      (dsh.overrideAttrs (old: {
-        postInstall = (old.postInstall or "") + ''
-          substituteInPlace \
-            $out/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai/dsh-app-boot/lib/index.js \
-            --replace-fail 'const addon = createRequire(import.meta.url)("node-addon-require-builtin");' \
-              'const addon = { requireBuiltin: createRequire(import.meta.url) };'
-        '';
-      }))
+      dsh
       codex
       # claude-code
     ]);
@@ -38,8 +32,9 @@ in
 
     yt-dlp = {
       enable = true;
+      # LibreWolf uses the Firefox cookie database format.
       extraConfig = ''
-        --cookies-from-browser chrome:~/.var/app/com.google.Chrome/config/google-chrome/Default
+        --cookies-from-browser firefox:~/.librewolf
       '';
     };
   };

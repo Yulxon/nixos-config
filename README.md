@@ -33,10 +33,21 @@ and command-line use.
 
 ## Fonts
 
-`home/gui/default.nix` installs Maple Mono NF CN and Symbols Nerd Font.
+`modules/graphical.nix` installs Maple Mono NF CN and Symbols Nerd Font through
+`fonts.packages`, so they end up in `/run/current-system/sw/share/X11/fonts`.
+That is the directory the NixOS Flatpak patch exposes to sandboxed apps as
+`/run/host/fonts`; fonts installed per-user are invisible to Flatpak apps such as
+Chrome, WeChat and Feishu.
 NixOS's default font packages provide Noto CJK and emoji fonts; they do not
-need duplicate Home Manager package declarations. Console font preferences
-and wallpaper are managed locally.
+need duplicate declarations. Kitty uses Maple Mono NF CN, and GNOME's Ctrl+t
+shortcut launches `kitty -- fish`. Wallpaper is managed locally.
+
+## Browser
+
+`home/gui/librewolf.nix` installs LibreWolf in place of Firefox. Browsing history,
+cookies, and site data are retained across restarts; automatic cleanup on exit is
+disabled. Browser profiles remain local and are not stored in this repository.
+yt-dlp reads cookies from `~/.librewolf` using its Firefox cookie reader.
 
 ## Dynamic linking compatibility
 

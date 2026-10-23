@@ -1,11 +1,15 @@
-{ ... }:
+{ lib, ... }:
 {
   imports = [
     ./system.nix
     ./graphical.nix
   ];
 
-  time.timeZone = "Asia/Shanghai";
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "nvidia-x11"
+    "nvidia-settings"
+    "rime-moegirl"
+  ];
 
   nix = {
     optimise.automatic = true;
@@ -31,7 +35,15 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 6;
+      efi.canTouchEfiVariables = true;
+    };
+  };
+
+  zramSwap.enable = true;
 
   fileSystems."/" = {
     options = [
