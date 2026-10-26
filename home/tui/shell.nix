@@ -14,6 +14,10 @@
 
     fish = {
       enable = true;
+      # ANSI colors follow Kitty's Rosé Pine / Dawn palette.
+      shellInit = ''
+        fish_config theme choose default
+      '';
       interactiveShellInit = ''
         set -g fish_greeting "" # Disable greeting
       '';
@@ -43,7 +47,23 @@
       };
       presets = [ "plain-text-symbols" ];
     };
-    fzf.enable = true; # ctrl+r
+    fzf = {
+      enable = true; # ctrl+r
+      colors = {
+        fg = "-1";
+        bg = "-1";
+        "fg+" = "-1";
+        "bg+" = "-1";
+        hl = "3";
+        "hl+" = "3";
+        info = "6";
+        prompt = "5";
+        pointer = "5";
+        marker = "2";
+        spinner = "5";
+        header = "6";
+      };
+    };
     zoxide.enable = true; # z to cd
   };
 

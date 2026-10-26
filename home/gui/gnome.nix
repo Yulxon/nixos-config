@@ -61,11 +61,6 @@
       name = "rewaita";
     };
 
-    # GNOME 软件
-    "org/gnome/software" = {
-      first-run = false;
-    };
-
     # 清理/捐赠提示
     "org/gnome/settings-daemon/plugins/housekeeping" = {
       donation-reminder-enabled = false;

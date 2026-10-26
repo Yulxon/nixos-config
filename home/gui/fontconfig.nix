@@ -61,27 +61,24 @@ in
   xdg.dataFile."flatpak/overrides/global".text = ''
     [Context]
     filesystems=/nix/store:ro;xdg-config/fontconfig:ro;~/.local/share/fonts:ro;
+
+    [Environment]
+    FONTCONFIG_FILE=${config.xdg.configHome}/fontconfig/flatpak.conf
   '';
 
-  # Chrome fails to load some fonts through Flatpak's /run/host/fonts mapping.
-  # Keep the normal rules, but scan the original Nix store paths instead.
-  xdg.configFile."fontconfig/chrome.conf".text = ''
+  # Flatpak's host-font mapping misses some NixOS fonts.
+  # Add the original store paths while retaining runtime and user fonts.
+  xdg.configFile."fontconfig/flatpak.conf".text = ''
     <?xml version="1.0"?>
     <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
     <fontconfig>
       <include>/etc/fonts/fonts.conf</include>
-      <reset-dirs/>
       <dir>/usr/share/fonts</dir>
       ${lib.concatMapStringsSep "\n" (font: ''
         <dir>${font}/share/fonts</dir>
         <dir>${font}/share/X11/fonts</dir>
       '') osConfig.fonts.packages}
     </fontconfig>
-  '';
-
-  xdg.dataFile."flatpak/overrides/com.google.Chrome".text = ''
-    [Environment]
-    FONTCONFIG_FILE=${config.xdg.configHome}/fontconfig/chrome.conf
   '';
 
   fonts.fontconfig = {

@@ -24,7 +24,7 @@ nix flake update nixpkgs home-manager # update the primary inputs
 
 ## Default editor
 
-`home/tui/helix.nix` installs Helix for `chumi` through Home Manager and sets
+`home/tui/default.nix` installs Helix for `chumi` through Home Manager and sets
 the user's `EDITOR` and `VISUAL` to `hx` on both hosts. Rebuild and start a new session to
 use the updated environment. The NixVim module and flake input have been removed.
 
@@ -41,6 +41,21 @@ Chrome, WeChat and Feishu.
 NixOS's default font packages provide Noto CJK and emoji fonts; they do not
 need duplicate declarations. Kitty uses Maple Mono NF CN, and GNOME's Ctrl+t
 shortcut launches `kitty -- fish`. Wallpaper is managed locally.
+
+## Appearance
+
+Kitty follows GNOME appearance: Rosé Pine in dark mode, Rosé Pine Dawn in
+light mode and when no preference is set. Fish, fzf, Starship, btop and Helix
+use terminal colors so their appearance follows Kitty without separate RGB
+palettes. Helix's `system` theme preserves the terminal's default foreground
+and background. Open a new terminal after rebuilding to replace old shell
+settings.
+
+mpv's OSD uses the same light/dark palettes, checking GNOME's color scheme
+asynchronously every two seconds, including while paused. GNOME Shell's theme
+is managed by Rewaita through `org/gnome/shell/extensions/user-theme`;
+keep its theme name set to `rewaita`. LibreWolf retains its native system
+appearance. Application-local themes outside this flake remain local.
 
 ## Browser
 

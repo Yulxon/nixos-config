@@ -13,6 +13,17 @@
       "privacy.clearOnShutdown.offlineApps" = false;
       "privacy.clearOnShutdown_v2.historyFormDataAndDownloads" = false;
       "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+
+      # "privacy.resistFingerprinting" = false;
+
+      "webgl.disabled" = false;
+      "webgl.force-enabled" = true;
+
+      "media.eme.enabled" = true;
+      "browser.eme.ui.enabled" = true;
+
+      "media.gmp-provider.enabled" = true;
+      "media.gmp-gmpopenh264.enabled" = true;
     };
 
     policies = {

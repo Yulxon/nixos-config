@@ -3,7 +3,11 @@
   programs.kitty = {
     enable = true;
 
-    themeFile = "Catppuccin-Mocha";
+    autoThemeFiles = {
+      dark = "rose-pine";
+      light = "rose-pine-dawn";
+      noPreference = "rose-pine-dawn";
+    };
 
     font = {
       name = "Maple Mono NF CN";
@@ -24,6 +28,5 @@
       tab_bar_edge = "bottom";
       tab_bar_style = "powerline";
     };
-
   };
 }
